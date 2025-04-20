@@ -6,7 +6,7 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 
 <br>
 
-## ☍ Screenshots
+## § Screenshots
 
 <div style="display: flex; align-items: center; margin-bottom: 20px;">
   <img src="assets/df-animate.png" alt="datFlux anim" width="500">
@@ -29,17 +29,27 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 
 <br>
 
-## ☍ System Requirements
+## § System Requirements
 
-- **Linux** (primary support): full functionality available
-- **macOS** (partial support): basic features work, but system monitoring may be limited
+<div align="left">
+  
+![Linux: Full Support](https://img.shields.io/badge/Linux-Full%20Support-success?logo=linux&logoColor=white)
+![macOS: Partial Support](https://img.shields.io/badge/macOS-Partial%20Support-yellow?logo=apple&logoColor=white)
+![Windows: Not Supported](https://img.shields.io/badge/Windows-Not%20Supported-critical?logo=windows&logoColor=white)
+
+</div>
+
+- **Linux**: full functionality available
+- **macOS**: basic features work, but system monitoring may be limited
 - **Windows**: not currently supported
-
-For best results, try datFlux on a Linux system.
 
 <br>
 
-## ☍ Features
+> ※ For the best experience, try datFlux on a Linux system
+
+<br>
+
+## § Features
 
 - **High-Entropy Password Generation**: creates strong passwords using real system noise
 - **Cinematic Password Reveal Animation**: visually decrypts passwords character by character
@@ -49,7 +59,7 @@ For best results, try datFlux on a Linux system.
 
 <br>
 
-## ☍ Installation
+## § Installation
 
 ### Quick Install Script (Linux/macOS)
 
@@ -88,7 +98,7 @@ go install github.com/bxavaby/datFlux/cmd/datflux@latest
 
 <br>
 
-## ☍ Usage
+## § Usage
 
 Launch it in your terminal:
 
@@ -104,7 +114,7 @@ datflux
 
 <br>
 
-## ☍ How It Works
+## § How It Works
 
 datFlux creates background system load through various noise generation methods:
 
@@ -116,7 +126,7 @@ These operations generate entropy that is collected, hashed, and used to create 
 
 <br>
 
-## ☍ Security Considerations
+## § Security Considerations
 
 - datFlux generates passwords locally; no data is sent over the network
 - The program creates system load to generate entropy but has safeguards to prevent excessive resource usage
@@ -124,7 +134,7 @@ These operations generate entropy that is collected, hashed, and used to create 
 
 <br>
 
-## ☍ License
+## § License
 
 MIT License - see [LICENSE](LICENSE) for details
 
