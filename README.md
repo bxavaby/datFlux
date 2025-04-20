@@ -14,7 +14,7 @@
 
 <div align="center">
   <a href="https://github.com/yourusername/datflux">
-    <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&duration=3500&pause=100&color=bb9af7&center=true&vCenter=true&multiline=true&width=800&height=120&lines=datFlux+is+a+terminal-based+password+generator+that+uses+system+noise;as+entropy+sources+to+create+truly+random+passwords.+It+features;a+beautiful%2C+responsive+terminal+interface+and+creates+cryptographically;secure+passwords+while+showing+real-time+system+metrics." alt="datFlux Overview"/>
+    <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&duration=3500&pause=100&color=bb9af7&center=true&vCenter=true&multiline=true&width=800&height=120&lines=datFlux+is+a+terminal-based+password+generator+that+uses+system+noise;as+entropy+sources+to+create+truly+random+passwords.+It+features;a+beautiful%2C+responsive+TUI+and+creates+cryptographically;secure+passwords+while+showing+real-time+system+metrics." alt="datFlux Overview"/>
   </a>
   <br><br>
 </div>
