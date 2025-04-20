@@ -57,7 +57,7 @@ func (ng *NoiseGenerator) generateCPUNoise() {
 		default:
 			x := r.Float64() * 10000
 
-			for range 10000 {
+			for i := 0; i < 10000; i++ {
 				x = math.Sin(x) * math.Cos(x) * math.Tan(x)
 				x = math.Sqrt(math.Abs(x)) + math.Log(math.Abs(x+1))
 			}
