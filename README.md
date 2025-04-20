@@ -8,20 +8,24 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 
 ## ☍ Screenshots
 
-<p align="left">
-  <img src="assets/df-animate.png" alt="datFlux anim" width="500"><br>
-  <em>⊹ mid-animation ⊹</em>
-</p>
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+  <img src="assets/df-animate.png" alt="datFlux anim" width="500">
+  <em style="margin-left: 20px;">⊹ mid-animation ⊹</em>
+</div>
 
-<p align="left">
-  <img src="assets/df-pwd.png" alt="datFlux gen" width="500"><br>
-  <em>⊹ password generated ⊹</em>
-</p>
+<br>
 
-<p align="left">
-  <img src="assets/df-copy.png" alt="datFlux cpy" width="500"><br>
-  <em>⊹ copy password ⊹</em>
-</p>
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+  <img src="assets/df-pwd.png" alt="datFlux gen" width="500">
+  <em style="margin-left: 20px;">⊹ password generated ⊹</em>
+</div>
+
+<br>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+  <img src="assets/df-copy.png" alt="datFlux cpy" width="500">
+  <em style="margin-left: 20px;">⊹ copy password ⊹</em>
+</div>
 
 <br>
 
