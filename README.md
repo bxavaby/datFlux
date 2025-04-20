@@ -42,6 +42,13 @@
 
 <br>
 
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+  <img src="assets/df-pwdstg.png" alt="datFlux cpy" width="500">
+  <em style="margin-left: 20px;">⊹ password strength ⊹</em>
+</div>
+
+<br>
+
 ## § System Requirements
 
 <div align="left">
