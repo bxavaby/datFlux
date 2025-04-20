@@ -56,7 +56,7 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 - **System Metrics Dashboard**: live CPU, RAM, and Network usage monitoring
 - **Entropy Quality Indicator**: monitors randomness quality in real-time
 - **Clipboard Integration**: copy passwords to your clipboard with a single keystroke
-- 
+
 <br>
 
 ## § Installation
