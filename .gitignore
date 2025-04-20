@@ -1,0 +1,9 @@
+/datflux
+/bin/
+/dist/
+/build/
+
+!*.go
+!cmd/
+!internal/
+!assets/
