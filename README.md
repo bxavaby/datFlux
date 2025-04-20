@@ -67,9 +67,9 @@ datflux
 
 ### Key Commands
 
-- <kbd>r</kbd> - (Re)generate password
-- <kbd>c</kbd> - Copy the generated password to clipboard
-- <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - Quit datFlux
+- <kbd>r</kbd> - (re)generate password
+- <kbd>c</kbd> - copy the generated password to clipboard
+- <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
 
 ## How It Works
 
