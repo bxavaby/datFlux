@@ -1,4 +1,4 @@
-<img src="assets/df.png" alt="datFlux Logo" width="200"/>
+<img src="assets/df-tn.png" alt="datFlux Logo" width="200"/>
 
 > An entropy-borne password generator with a Tokyo Night TUI dashboard
 
