@@ -17,7 +17,7 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 ![datFlux cpy](assets/df-copy.png) 
 ⊹ _copy password_ ⊹
 
----
+<br>
 
 ## ☍ System Requirements
 
@@ -27,6 +27,8 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 
 For best results, try datFlux on a Linux system.
 
+<br>
+
 ## ☍ Features
 
 - **High-Entropy Password Generation**: creates strong passwords using real system noise
@@ -34,6 +36,8 @@ For best results, try datFlux on a Linux system.
 - **System Metrics Dashboard**: live CPU, RAM, and Network usage monitoring
 - **Entropy Quality Indicator**: monitors randomness quality in real-time
 - **Clipboard Integration**: copy passwords to your clipboard with a single keystroke
+
+<br>
 
 ## ☍ Installation
 
@@ -72,7 +76,9 @@ go build -o datflux ./cmd/datflux
 go install github.com/bxavaby/datFlux/cmd/datflux@latest
 ```
 
-## Usage
+<br>
+
+## ☍ Usage
 
 Launch it in your terminal:
 
@@ -86,6 +92,8 @@ datflux
 - <kbd>c</kbd> - copy the generated password to clipboard
 - <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
 
+<br>
+
 ## ☍ How It Works
 
 datFlux creates background system load through various noise generation methods:
@@ -96,11 +104,15 @@ datFlux creates background system load through various noise generation methods:
 
 These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.
 
+<br>
+
 ## ☍ Security Considerations
 
 - datFlux generates passwords locally; no data is sent over the network
 - The program creates system load to generate entropy but has safeguards to prevent excessive resource usage
 - Generated passwords never leave your computer unless you copy them
+
+<br>
 
 ## ☍ License
 
