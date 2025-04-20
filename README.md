@@ -1,8 +1,25 @@
-<img src="assets/df-tn.png" alt="datFlux Logo" width="200"/>
+<div align="center">
+  <img src="assets/df-tn.png" alt="datFlux Logo" width="300"/>
+  
+  <h1>datFlux</h1>
+  <p><em>An entropy-borne password generator with a Tokyo Night TUI dashboard</em></p>
 
-> An entropy-borne password generator with a Tokyo Night TUI dashboard
+  <a href="#-features"><img src="https://img.shields.io/badge/Features-Overview-1a1b26?color=7aa2f7" alt="Features"></a>
+  <a href="#-installation"><img src="https://img.shields.io/badge/Installation-Guide-1a1b26?color=9ece6a" alt="Installation"></a>
+  <a href="#-usage"><img src="https://img.shields.io/badge/Usage-Instructions-1a1b26?color=ff9e64" alt="Usage"></a>
+  <a href="#-security-considerations"><img src="https://img.shields.io/badge/Security-Considerations-1a1b26?color=bb9af7" alt="Security"></a>
+</div>
 
-datFlux is a terminal-based password generator that uses system noise as entropy sources to create truly random passwords. It features a beautiful, responsive terminal interface and creates cryptographically secure passwords while showing real-time system metrics.
+<br><br>
+  
+  <p align="center" width="80%">
+    datFlux is a terminal-based password generator that uses system noise as entropy<br>
+    sources to create truly random passwords. It features a beautiful, responsive terminal<br>
+    interface and creates cryptographically secure passwords while showing real-time system metrics.
+  </p>
+
+  <br>
+</div>
 
 <br>
 
