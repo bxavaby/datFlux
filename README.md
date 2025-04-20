@@ -8,20 +8,16 @@
   <a href="#-installation"><img src="https://img.shields.io/badge/Installation-Guide-1a1b26?color=9ece6a" alt="Installation"></a>
   <a href="#-usage"><img src="https://img.shields.io/badge/Usage-Instructions-1a1b26?color=ff9e64" alt="Usage"></a>
   <a href="#-security-considerations"><img src="https://img.shields.io/badge/Security-Considerations-1a1b26?color=bb9af7" alt="Security"></a>
-</div>
-
-<br><br>
   
-  <p align="center" width="80%">
-    datFlux is a terminal-based password generator that uses system noise as entropy<br>
-    sources to create truly random passwords. It features a beautiful, responsive terminal<br>
-    interface and creates cryptographically secure passwords while showing real-time system metrics.
-  </p>
-
   <br>
 </div>
 
-<br>
+<div align="center">
+  <a href="https://github.com/yourusername/datflux">
+    <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&duration=3500&pause=100&color=bb9af7&center=true&vCenter=true&multiline=true&width=800&height=120&lines=datFlux+is+a+terminal-based+password+generator+that+uses+system+noise;as+entropy+sources+to+create+truly+random+passwords.+It+features;a+beautiful%2C+responsive+terminal+interface+and+creates+cryptographically;secure+passwords+while+showing+real-time+system+metrics." alt="datFlux Overview"/>
+  </a>
+  <br><br>
+</div>
 
 ## § Screenshots
 
