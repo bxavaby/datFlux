@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"fmt"
 	"os/exec"
 	"strings"
 	"time"
@@ -34,9 +35,15 @@ type Dashboard struct {
 	clipboardStatus  string
 	cpuProgress      progress.Model
 	memProgress      progress.Model
+	themeManager     *ThemeManager // Add this
+	currentTheme     ThemeType
 }
 
 func NewDashboardModel(collector *entropy.Collector) *Dashboard {
+	themeManager := NewThemeManager()
+
+	InitializeStyles(themeManager.GetCurrentTheme())
+
 	sysMonitor := monitor.NewSystemMonitor()
 
 	passGen := password.NewGenerator(collector)
@@ -55,6 +62,8 @@ func NewDashboardModel(collector *entropy.Collector) *Dashboard {
 		ready:            false,
 		cpuProgress:      cpuBar,
 		memProgress:      memBar,
+		themeManager:     themeManager,
+		currentTheme:     themeManager.currentTheme,
 	}
 }
 
@@ -111,6 +120,15 @@ func copyToClipboardCmd(text string) tea.Cmd {
 			message: message,
 		}
 	}
+}
+
+func (d *Dashboard) SwitchTheme() {
+	d.currentTheme = d.themeManager.CycleTheme()
+
+	InitializeStyles(d.themeManager.GetCurrentTheme())
+
+	d.cpuProgress = CPUProgress
+	d.memProgress = MemoryProgress
 }
 
 func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -184,6 +202,10 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if d.lastPassword != "" {
 				return d, copyToClipboardCmd(d.lastPassword)
 			}
+
+		case "t":
+			d.SwitchTheme()
+			return d, nil
 		}
 	}
 
@@ -199,7 +221,8 @@ func (d *Dashboard) View() string {
 
 	docStyle := lipgloss.NewStyle().Padding(0, 2)
 
-	titleView := TitleStyle.Width(contentWidth).Render("🌸 [datFlux] Entropy-Borne Password Generator")
+	titleView := TitleStyle.Width(contentWidth).Render(fmt.Sprintf("🌸 [datFlux] Entropy-Borne Password Generator [%s]",
+		d.themeManager.GetCurrentTheme().Name))
 
 	// vertical layout always
 	passwordView := renderPasswordView(
@@ -243,7 +266,7 @@ func (d *Dashboard) View() string {
 	if d.clipboardStatus != "" {
 		helpText = ValueStyle.Render(d.clipboardStatus)
 	} else {
-		helpText = HelpStyle.Render("Press r to generate • Press c to copy • Press q to quit")
+		helpText = HelpStyle.Render("Press r to generate • c to copy • t to change theme • q to quit")
 	}
 
 	return docStyle.Render(
