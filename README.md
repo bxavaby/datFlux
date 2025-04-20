@@ -93,4 +93,4 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-<p align="center">A project by <a href="https://github.com/bxavaby">bxavaby</a></p>
+<p align="center">By <a href="https://github.com/bxavaby">bxavaby</a></p>
