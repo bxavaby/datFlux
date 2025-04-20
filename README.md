@@ -4,13 +4,14 @@
 
 datFlux is a terminal-based password generator that uses system noise as entropy sources to create truly random passwords. It features a beautiful, responsive terminal interface and creates cryptographically secure passwords while showing real-time system metrics.
 
+<br>
 
 ## ☍ Screenshots
 
 ![datFlux anim](assets/df-animate.png) 
 ⊹ _mid-animation_ ⊹
 
-![datFlux gen](assets/df-psw.png) 
+![datFlux gen](assets/df-pwd.png) 
 ⊹ _password generated_ ⊹
 
 ![datFlux cpy](assets/df-copy.png) 
