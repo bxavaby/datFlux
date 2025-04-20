@@ -12,17 +12,19 @@ var (
 	DarkBlue     = lipgloss.Color("#565f89") // Secondary background
 	Lavender     = lipgloss.Color("#bb9af7") // Purple accent
 	SkyBlue      = lipgloss.Color("#7dcfff") // Blue accent
-	PaleGreen    = lipgloss.Color("#9ece6a") // Success/positive
-	PeachRed     = lipgloss.Color("#f7768e") // Warning/accent
-	OrangeYellow = lipgloss.Color("#e0af68") // Highlight
+	PaleGreen    = lipgloss.Color("#c3e88d") // Success/positive
+	PaleCyan     = lipgloss.Color("#b4f9f8") // Very Strong Password
+	PeachRed     = lipgloss.Color("#ff757f") // Warning/accent
+	OrangeYellow = lipgloss.Color("#ffc777") // Highlight
 
 	StormBlueStr    = "#24283b"
 	DarkBlueStr     = "#565f89"
 	LavenderStr     = "#bb9af7"
 	SkyBlueStr      = "#7dcfff"
-	PaleGreenStr    = "#9ece6a"
-	PeachRedStr     = "#f7768e"
-	OrangeYellowStr = "#e0af68"
+	PaleGreenStr    = "#c3e88d"
+	PaleCyanStr     = "#b4f9f8"
+	PeachRedStr     = "#ff757f"
+	OrangeYellowStr = "#ffc777"
 )
 
 var PasswordAnimationColors = []lipgloss.Color{
@@ -65,6 +67,12 @@ var (
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(SkyBlue). // blue borders
 			Padding(1, 0)
+
+	StrongPwdStyle = lipgloss.NewStyle().
+			Foreground(SkyBlue)
+
+	VeryStrongPwdStyle = lipgloss.NewStyle().
+				Foreground(PaleCyan)
 )
 
 var (

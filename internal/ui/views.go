@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 
 	"datflux/internal/monitor"
+	"datflux/internal/password"
 )
 
 func renderCPUView(cpuUsage float64, progressBar progress.Model, width int) string {
@@ -89,7 +90,7 @@ func renderNetworkView(rxSpeed float64, txSpeed float64, iface string, width int
 	return BorderStyle.Width(width).Render(builder.String())
 }
 
-func renderPasswordView(animation *PasswordAnimation, quality float64, width int) string {
+func renderPasswordView(animation *PasswordAnimation, quality float64, width int, passwordGen *password.Generator) string {
 	var builder strings.Builder
 
 	qualityIndicator := ""
@@ -104,7 +105,6 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 
 	passwordText := animation.CurrentPassword()
 	passLen := len(passwordText)
-
 	padding := max((width-passLen-4)/2, 0)
 
 	builder.WriteString(strings.Repeat(" ", padding))
@@ -113,7 +113,69 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 		builder.WriteString(animation.StyledPassword())
 	} else {
 		builder.WriteString(PasswordStyle.Render(passwordText))
+
+		if passwordText != "Press 'r' to generate a password" && len(passwordText) > 0 {
+			strength := passwordGen.AnalyzeStrength(passwordText)
+
+			builder.WriteString("\n\n")
+
+			// strength meter
+			builder.WriteString(renderStrengthMeter(strength.Score, width-10))
+
+			// crack time estimate
+			crackTimeText := fmt.Sprintf("Time to crack: %s", strength.CrackTimeDesc)
+			builder.WriteString("\n" + renderStrengthText(crackTimeText, strength.Score))
+
+			// entropy information (f the screen is large enough)
+			if width > 60 {
+				entropyText := fmt.Sprintf("Entropy: %.1f bits", strength.EntropyBits)
+				builder.WriteString("  " + ValueStyle.Render(entropyText))
+			}
+
+			// feedback, if any
+			if strength.Feedback != "" && width > 60 {
+				builder.WriteString("\n" + WarningStyle.Render(strength.Feedback))
+			}
+		}
 	}
 
 	return BorderStyle.Width(width).Render(builder.String())
+}
+
+func renderStrengthMeter(score int, width int) string {
+	colors := []lipgloss.Style{
+		DangerStyle,        // 0 - Very Weak
+		DangerStyle,        // 1 - Weak
+		WarningStyle,       // 2 - Medium
+		StrongPwdStyle,     // 3 - Strong
+		VeryStrongPwdStyle, // 4 - Very Strong
+	}
+
+	labels := []string{
+		"Very Weak", "Weak", "Reasonable", "Strong", "Very Strong",
+	}
+
+	barWidth := width - len(labels[score]) - 2
+	filledWidth := int(float64(barWidth) * float64(score+1) / 5.0)
+	emptyWidth := barWidth - filledWidth
+
+	bar := colors[score].Render(strings.Repeat("█", filledWidth))
+	bar += strings.Repeat("░", emptyWidth)
+
+	return bar + " " + colors[score].Render(labels[score])
+}
+
+func renderStrengthText(text string, score int) string {
+	switch score {
+	case 0, 1:
+		return DangerStyle.Render(text)
+	case 2:
+		return WarningStyle.Render(text)
+	case 3:
+		return StrongPwdStyle.Render(text)
+	case 4:
+		return VeryStrongPwdStyle.Render(text)
+	default:
+		return text
+	}
 }

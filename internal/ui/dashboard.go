@@ -206,6 +206,7 @@ func (d *Dashboard) View() string {
 		d.animation,
 		d.entropyCollector.GetEntropyQuality(),
 		contentWidth-2,
+		d.passwordGen,
 	)
 
 	cpuView := renderCPUView(
