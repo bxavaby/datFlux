@@ -4,7 +4,21 @@
 
 datFlux is a terminal-based password generator that uses system noise as entropy sources to create truly random passwords. It features a beautiful, responsive terminal interface and creates cryptographically secure passwords while showing real-time system metrics.
 
-## System Requirements
+
+## ☍ Screenshots
+
+![datFlux anim](assets/df-animate.png) 
+⊹ _mid-animation_ ⊹
+
+![datFlux gen](assets/df-psw.png) 
+⊹ _password generated_ ⊹
+
+![datFlux cpy](assets/df-copy.png) 
+⊹ _copy password_ ⊹
+
+---
+
+## ☍ System Requirements
 
 - **Linux** (primary support): full functionality available
 - **macOS** (partial support): basic features work, but system monitoring may be limited
@@ -12,7 +26,7 @@ datFlux is a terminal-based password generator that uses system noise as entropy
 
 For best results, try datFlux on a Linux system.
 
-## Features
+## ☍ Features
 
 - **High-Entropy Password Generation**: creates strong passwords using real system noise
 - **Cinematic Password Reveal Animation**: visually decrypts passwords character by character
@@ -20,7 +34,7 @@ For best results, try datFlux on a Linux system.
 - **Entropy Quality Indicator**: monitors randomness quality in real-time
 - **Clipboard Integration**: copy passwords to your clipboard with a single keystroke
 
-## Installation
+## ☍ Installation
 
 ### Quick Install Script (Linux/macOS)
 
@@ -71,7 +85,7 @@ datflux
 - <kbd>c</kbd> - copy the generated password to clipboard
 - <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
 
-## How It Works
+## ☍ How It Works
 
 datFlux creates background system load through various noise generation methods:
 
@@ -81,13 +95,13 @@ datFlux creates background system load through various noise generation methods:
 
 These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.
 
-## Security Considerations
+## ☍ Security Considerations
 
 - datFlux generates passwords locally; no data is sent over the network
 - The program creates system load to generate entropy but has safeguards to prevent excessive resource usage
 - Generated passwords never leave your computer unless you copy them
 
-## License
+## ☍ License
 
 MIT License - see [LICENSE](LICENSE) for details
 
