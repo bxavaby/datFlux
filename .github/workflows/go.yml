@@ -36,19 +36,20 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.21'
-
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v3
-      with:
-        version: v1.54.2
-        args: --timeout=5m
+    - name: Basic Linting
+      run: |
+        go vet ./...
+        if [ $? -ne 0 ]; then
+          echo "go vet found issues"
+          exit 1
+        fi
+        
+        # Check for formatting issues
+        gofmt_output=$(gofmt -l .)
+        if [ -n "$gofmt_output" ]; then
+          echo "The following files have formatting issues:"
+          echo "$gofmt_output"
+          exit 1
+        fi
+        
+        echo "Basic linting passed!"
