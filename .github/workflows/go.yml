@@ -1,5 +1,9 @@
 name: datFlux CI
 
+permissions:
+  contents: read
+  security-events: write
+  
 on:
   push:
     branches: [ "main" ]
