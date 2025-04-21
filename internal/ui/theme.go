@@ -113,7 +113,7 @@ func createTokyoNightTheme() Theme {
 
 		PasswordColor:   lipgloss.Color("#bb9af7"), // Lavender
 		StrongColor:     lipgloss.Color("#c3e88d"), // PaleGreen
-		VeryStrongColor: lipgloss.Color("#b4f9f8"), // LightBlue
+		VeryStrongColor: lipgloss.Color("#b4f9f8"), // PaleCyan
 
 		PrimaryStr:         "#24283b",
 		SecondaryStr:       "#565f89",

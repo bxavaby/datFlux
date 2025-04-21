@@ -90,7 +90,7 @@ func renderNetworkView(rxSpeed float64, txSpeed float64, iface string, width int
 	return BorderStyle.Width(width).Render(builder.String())
 }
 
-func renderPasswordView(animation *PasswordAnimation, quality float64, width int, passwordGen *password.Generator) string {
+func renderPasswordView(animation *PasswordAnimation, quality float64, width int, passwordGen *password.Generator, attackModel password.AttackModelType) string {
 	var builder strings.Builder
 
 	qualityIndicator := ""
@@ -122,14 +122,21 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 			// strength meter
 			builder.WriteString(renderStrengthMeter(strength.Score, width-10))
 
-			// crack time estimate
-			crackTimeText := fmt.Sprintf("Time to crack: %s", strength.CrackTimeDesc)
+			// crack time w current model
+			crackTimeDesc := passwordGen.GetCrackTimeForModel(passwordText, attackModel)
+			crackTimeText := fmt.Sprintf("Time to crack: %s", crackTimeDesc)
 			builder.WriteString("\n" + renderStrengthText(crackTimeText, strength.Score))
 
-			// entropy information (f the screen is large enough)
+			// attack model info
+			models := password.GetAttackModels()
+			currentModel := models[attackModel]
+			modelText := fmt.Sprintf("Attack model: %s", currentModel.Name)
+			builder.WriteString("\n" + ValueStyle.Render(modelText))
+
+			// entropy information (if the screen is large enough)
 			if width > 60 {
 				entropyText := fmt.Sprintf("Entropy: %.1f bits", strength.EntropyBits)
-				builder.WriteString("  " + ValueStyle.Render(entropyText))
+				builder.WriteString("\n" + ValueStyle.Render(entropyText))
 			}
 
 			// feedback, if any

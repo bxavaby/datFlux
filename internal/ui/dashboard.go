@@ -24,19 +24,20 @@ type clipboardResultMsg struct {
 type clipboardClearMsg struct{}
 
 type Dashboard struct {
-	systemMonitor    *monitor.SystemMonitor
-	passwordGen      *password.Generator
-	entropyCollector *entropy.Collector
-	animation        *PasswordAnimation
-	width            int
-	height           int
-	ready            bool
-	lastPassword     string
-	clipboardStatus  string
-	cpuProgress      progress.Model
-	memProgress      progress.Model
-	themeManager     *ThemeManager // Add this
-	currentTheme     ThemeType
+	systemMonitor      *monitor.SystemMonitor
+	passwordGen        *password.Generator
+	currentAttackModel password.AttackModelType
+	entropyCollector   *entropy.Collector
+	animation          *PasswordAnimation
+	width              int
+	height             int
+	ready              bool
+	lastPassword       string
+	clipboardStatus    string
+	cpuProgress        progress.Model
+	memProgress        progress.Model
+	themeManager       *ThemeManager
+	currentTheme       ThemeType
 }
 
 func NewDashboardModel(collector *entropy.Collector) *Dashboard {
@@ -55,15 +56,16 @@ func NewDashboardModel(collector *entropy.Collector) *Dashboard {
 	memBar := MemoryProgress
 
 	return &Dashboard{
-		systemMonitor:    sysMonitor,
-		passwordGen:      passGen,
-		entropyCollector: collector,
-		animation:        anim,
-		ready:            false,
-		cpuProgress:      cpuBar,
-		memProgress:      memBar,
-		themeManager:     themeManager,
-		currentTheme:     themeManager.currentTheme,
+		systemMonitor:      sysMonitor,
+		passwordGen:        passGen,
+		entropyCollector:   collector,
+		animation:          anim,
+		ready:              false,
+		cpuProgress:        cpuBar,
+		memProgress:        memBar,
+		themeManager:       themeManager,
+		currentTheme:       themeManager.currentTheme,
+		currentAttackModel: password.OnlineRateLimited,
 	}
 }
 
@@ -129,6 +131,10 @@ func (d *Dashboard) SwitchTheme() {
 
 	d.cpuProgress = CPUProgress
 	d.memProgress = MemoryProgress
+}
+
+func (d *Dashboard) CycleAttackModel() {
+	d.currentAttackModel = (d.currentAttackModel + 1) % 3
 }
 
 func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -202,9 +208,14 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if d.lastPassword != "" {
 				return d, copyToClipboardCmd(d.lastPassword)
 			}
+			return d, nil
 
 		case "t":
 			d.SwitchTheme()
+			return d, nil
+
+		case "o":
+			d.CycleAttackModel()
 			return d, nil
 		}
 	}
@@ -230,6 +241,7 @@ func (d *Dashboard) View() string {
 		d.entropyCollector.GetEntropyQuality(),
 		contentWidth-2,
 		d.passwordGen,
+		d.currentAttackModel,
 	)
 
 	cpuView := renderCPUView(
@@ -266,7 +278,7 @@ func (d *Dashboard) View() string {
 	if d.clipboardStatus != "" {
 		helpText = ValueStyle.Render(d.clipboardStatus)
 	} else {
-		helpText = HelpStyle.Render("Press r to generate • c to copy • t to change theme • q to quit")
+		helpText = HelpStyle.Render("[r] ⟳ gen | [c] ⎘ copy | [o] ⌬ model | [t] ◑ theme | [q] quit")
 	}
 
 	return docStyle.Render(

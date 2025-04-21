@@ -68,6 +68,9 @@ CURRENT_DIR=$(pwd)
 echo -e "${CYAN}Installing to ${INSTALL_DIR}/datflux...${NC}"
 if cp "$CURRENT_DIR/datflux" "$INSTALL_DIR/"; then
     echo -e "${GREEN}✓ Installation successful!${NC}"
+    # remove local binary after installing
+    echo -e "${CYAN}Cleaning up...${NC}"
+    rm -f "$CURRENT_DIR/datflux"
 else
     echo -e "${RED}Failed to copy binary. Try running with sudo?${NC}"
     echo -e "${YELLOW}Try: ${CYAN}sudo cp \"$CURRENT_DIR/datflux\" \"$INSTALL_DIR/\"${NC}"
