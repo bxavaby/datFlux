@@ -19,41 +19,38 @@
   <br><br>
 </div>
 
-## § Screenshots
+<div align="center">
 
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-  <img src="assets/df-animate.png" alt="datFlux anim" width="500">
-  <em style="margin-left: 20px;">⊹ mid-animation ⊹</em>
-</div>
+## § Walkthrough
 
 <br>
 
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-  <img src="assets/df-pwd.png" alt="datFlux gen" width="500">
-  <em style="margin-left: 20px;">⊹ password generated ⊹</em>
 </div>
-
-<br>
-
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-  <img src="assets/df-copy.png" alt="datFlux cpy" width="500">
-  <em style="margin-left: 20px;">⊹ copy password ⊹</em>
-</div>
-
-<br>
-
-<div style="display: flex; align-items: center; margin-bottom: 20px;">
-  <img src="assets/df-pwdstg.png" alt="datFlux cpy" width="500">
-  <em style="margin-left: 20px;">⊹ password strength ⊹</em>
-</div>
-
-<br>
-
-## § Themes
-
-datFlux comes with multiple colorschemes to match your aesthetic:
 
 <div align="center">
+  <h3>⊹ Password Generation ⊹</h3>
+  <p><em>Mid-animation password reveal</em></p>
+  <img src="assets/df-animate.png" alt="datFlux animation" width="500">
+  <br><br>
+  
+  <h3>⊹ Copy to Clipboard ⊹</h3>
+  <p><em>One-key operation to copy the password</em></p>
+  <img src="assets/df-copy.png" alt="Copy password" width="500">
+  <br><br>
+  
+  <h3>⊹ Strength Analysis ⊹</h3>
+  <p><em>Breakdown of the password's security</em></p>
+  <img src="assets/df-pwdstg.png" alt="Password strength" width="500">
+</div>
+
+<br>
+
+#
+
+<div align="center">
+  <p>datFlux comes with multiple colorschemes to match your aesthetic:</p>
+  <br>
+  
   <h3>Tokyo Night (Default)</h3>
   <p><em>Inspired by the beautiful city of Tokyo at night</em></p>
   <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
@@ -69,47 +66,63 @@ datFlux comes with multiple colorschemes to match your aesthetic:
   <img src="assets/df-hydrangea11.png" alt="Hydrangea 11 theme" width="500">
 </div>
 
-### Switching Themes
+<br><br>
 
-Press <kbd>t</kbd> while datFlux is running to cycle between available themes. Your preference will be applied immediately without interrupting the workflow.
+> ※ Press <kbd>t</kbd> anytime to cycle between available themes. Your preference will be applied immediately without interrupting the workflow.
 
 <br>
 
+<div align="center">
+  
 ## § System Requirements
-
-<div align="left">
   
 ![Linux: Full Support](https://img.shields.io/badge/Linux-Full%20Support-success?logo=linux&logoColor=white)
 ![macOS: Partial Support](https://img.shields.io/badge/macOS-Partial%20Support-yellow?logo=apple&logoColor=white)
 ![Windows: Not Supported](https://img.shields.io/badge/Windows-Not%20Supported-critical?logo=windows&logoColor=white)
 
+<br>
+
+<p>
+  <strong>Linux</strong>: full functionality available<br>
+  <strong>macOS</strong>: system monitoring may be limited<br>
+  <strong>Windows</strong>: not currently supported
+</p>
+
 </div>
 
-- **Linux**: full functionality available
-- **macOS**: basic features work, but system monitoring may be limited
-- **Windows**: not currently supported
-
-<br>
+<br><br>
 
 > ※ For the best experience, try datFlux on a Linux system
 
 <br>
 
+<div align="center">
+
 ## § Features
 
-- **High-Entropy Password Generation**: creates strong passwords using real system noise
-- **Cinematic Password Reveal Animation**: visually decrypts passwords character by character
-- **System Metrics Dashboard**: live CPU, RAM, and Network usage monitoring
-- **Entropy Quality Indicator**: monitors randomness quality in real-time
-- **Clipboard Integration**: copy passwords to your clipboard with a single keystroke
+  <p><strong>High-Entropy Password Generation</strong><br>creates strong passwords using real system noise</p>
+  <br>
+  
+  <p><strong>Cinematic Password Reveal Animation</strong><br>visually decrypts passwords character by character</p>
+  <br>
+  
+  <p><strong>System Metrics Dashboard</strong><br>live CPU, RAM, and Network usage monitoring</p>
+  <br>
+  
+  <p><strong>Entropy Quality Indicator</strong><br>monitors randomness quality in real-time</p>
+  <br>
+  
+  <p><strong>Clipboard Integration</strong><br>copy passwords to your clipboard with a single keystroke</p>
+</div>
 
-<br>
+<br><br>
+
+<div align="center">
 
 ## § Installation
 
-### Quick Install Script (Linux/macOS)
-
-The easiest way to install datFlux is using the installation script:
+  <h3>Quick Install Script (Linux/macOS)</h3>
+  <p>The easiest way to install datFlux is using the installation script:</p>
 
 ```bash
 # Clone the repository
@@ -120,9 +133,10 @@ cd datFlux
 ./install.sh
 ```
 
-The installer will build datFlux and add it to your system path.
-
-### From Source (Manual)
+  <p>The installer will build datFlux and add it to your system path.</p>
+  <br>
+  
+  <h3>From Source (Manual)</h3>
 
 ```bash
 # Clone the repository
@@ -136,55 +150,82 @@ go build -o datflux ./cmd/datflux
 ./datflux
 ```
 
-### Go Install
+<br>
+
+  <h3>Go Install</h3>
 
 ```bash
 go install github.com/bxavaby/datFlux/cmd/datflux@latest
 ```
+</div>
 
-<br>
+<br><br>
+
+<div align="center">
 
 ## § Usage
 
-Launch it in your terminal:
+  <p>Launch it in your terminal:</p>
 
 ```bash
 datflux
 ```
 
-### Key Commands
+  <h3>Key Commands</h3>
+  
+  <p>
+    <kbd>r</kbd> - generate password<br>
+    <kbd>c</kbd> - copy the password<br>
+    <kbd>t</kbd> - cycle through themes<br>
+    <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
+  </p>
+</div>
 
-- <kbd>r</kbd> - (re)generate password
-- <kbd>c</kbd> - copy the generated password to clipboard
-- <kbd>t</kbd> - toggle between themes
-- <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
+<br><br>
 
-<br>
-
+<div align="center">
+  
 ## § How It Works
 
-datFlux creates background system load through various noise generation methods:
+  <p>datFlux creates background system load through various noise generation methods:</p>
+  <br>
+  
+  <p><strong>1. CPU Noise</strong><br>performs complex mathematical operations</p>
+  <br>
+  
+  <p><strong>2. RAM Noise</strong><br>allocates and manipulates memory blocks</p>
+  <br>
+  
+  <p><strong>3. Network Noise</strong><br>creates local network connections and data transfer</p>
+  <br>
+  
+  <p>These operations generate entropy that is collected, hashed, and used to create unpredictable,<br>secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
+</div>
 
-1. **CPU Noise**: performs complex mathematical operations
-2. **RAM Noise**: allocates and manipulates memory blocks
-3. **Network Noise**: creates local network connections and data transfer
+<br><br>
 
-These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.
-
-<br>
-
+<div align="center">
+  
 ## § Security Considerations
 
-- datFlux generates passwords locally; no data is sent over the network
-- The program creates system load to generate entropy but has safeguards to prevent excessive resource usage
-- Generated passwords never leave your computer unless you copy them
+  <p>• datFlux password generation happens locally with zero network transmission</p>
+  <p>• System load is optimized with safeguards to collect entropy efficiently</p>
+  <p>• Your passwords remain on-device until you explicitly copy them elsewhere</p>
+</div>
 
-<br>
+<br><br>
+  
+#
 
-## § License
+<div align="center">
+  <p><em>v1.0.0 — Entropy-driven security</em></p>
+</div>
 
-MIT License - see [LICENSE](LICENSE) for details
-
----
-
-<p align="center">By <a href="https://github.com/bxavaby">bxavaby</a></p>
+<div align="center">
+  <p>
+    <a href="https://github.com/bxavaby">
+      <img src="https://img.shields.io/badge/crafted_with_%E2%9D%A4%EF%B8%8F_by-bxavaby-7aa2f7?style=for-the-badge" alt="Created by bxavaby">
+    </a>
+  </p>
+  <p><a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-bb9af7?style=for-the-badge" alt="MIT License"></a></p>
+</div>
