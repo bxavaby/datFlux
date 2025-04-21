@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/df-tn.png" alt="datFlux Logo" width="300"/>
+  <img src="assets/df-lg.png" alt="datFlux Logo" width="300"/>
   
   <h1>datFlux</h1>
   <p><em>An entropy-borne password generator with a Tokyo Night TUI dashboard</em></p>
@@ -46,6 +46,32 @@
   <img src="assets/df-pwdstg.png" alt="datFlux cpy" width="500">
   <em style="margin-left: 20px;">⊹ password strength ⊹</em>
 </div>
+
+<br>
+
+## § Themes
+
+datFlux comes with multiple colorschemes to match your aesthetic:
+
+<div align="center">
+  <h3>Tokyo Night (Default)</h3>
+  <p><em>Inspired by the beautiful city of Tokyo at night</em></p>
+  <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
+  <br><br>
+  
+  <h3>Ozone-10</h3>
+  <p><em>Inspired by polluted city sky colors</em></p>
+  <img src="assets/df-ozone10.png" alt="Ozone-10 theme" width="500">
+  <br><br>
+  
+  <h3>Hydrangea 11</h3>
+  <p><em>Inspired by hydrangea flowers</em></p>
+  <img src="assets/df-hydrangea11.png" alt="Hydrangea 11 theme" width="500">
+</div>
+
+### Switching Themes
+
+Press <kbd>t</kbd> while datFlux is running to cycle between available themes. Your preference will be applied immediately without interrupting the workflow.
 
 <br>
 
@@ -130,6 +156,7 @@ datflux
 
 - <kbd>r</kbd> - (re)generate password
 - <kbd>c</kbd> - copy the generated password to clipboard
+- <kbd>t</kbd> - toggle between themes
 - <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
 
 <br>
