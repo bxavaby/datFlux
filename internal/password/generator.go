@@ -2,6 +2,7 @@ package password
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 
 	"datflux/internal/entropy"
@@ -163,16 +164,23 @@ func (g *Generator) GetAdjustedCrackTime(baseSeconds float64, modelType AttackMo
 
 	// zxcvbn's default is 10ms/guess
 	defaultGuessesPerSec := 100.0
-
 	modelGuessesPerSec := models[modelType].GuessesPerSec
 
 	adjustmentFactor := modelGuessesPerSec / defaultGuessesPerSec
-
 	return baseSeconds / adjustmentFactor
 }
 
 func (g *Generator) GetCrackTimeForModel(password string, modelType AttackModelType) string {
 	result := zxcvbn.PasswordStrength(password, nil)
+
+	// for quantum computing, use entropy directly
+	if modelType == QuantumComputing {
+		entropyBits := float64(result.Entropy)
+		quantumEntropyBits := entropyBits / 2
+		quantumCrackTime := math.Pow(2, quantumEntropyBits) / GetAttackModels()[QuantumComputing].GuessesPerSec
+		return GetCrackTimeDescription(quantumCrackTime)
+	}
+
 	adjustedTime := g.GetAdjustedCrackTime(result.CrackTime, modelType)
 
 	return GetCrackTimeDescription(adjustedTime)
