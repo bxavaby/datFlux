@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/df-lg.png" alt="datFlux Logo" width="300"/>
-  
+
   <h1>datFlux</h1>
   <p><em>An entropy-borne password generator with a Tokyo Night TUI dashboard</em></p>
 
@@ -8,7 +8,7 @@
   <a href="#-installation"><img src="https://img.shields.io/badge/Installation-Guide-1a1b26?color=9ece6a" alt="Installation"></a>
   <a href="#-usage"><img src="https://img.shields.io/badge/Usage-Instructions-1a1b26?color=ff9e64" alt="Usage"></a>
   <a href="#-security-considerations"><img src="https://img.shields.io/badge/Security-Considerations-1a1b26?color=bb9af7" alt="Security"></a>
-  
+
   <br>
 </div>
 
@@ -32,12 +32,12 @@
   <p><em>Mid-animation password reveal</em></p>
   <img src="assets/df-animate.png" alt="datFlux animation" width="500">
   <br><br>
-  
+
   <h3>⊹ Copy to Clipboard ⊹</h3>
   <p><em>One-key operation to copy the password</em></p>
   <img src="assets/df-copy.png" alt="Copy password" width="500">
   <br><br>
-  
+
   <h3>⊹ Strength Analysis ⊹</h3>
   <p><em>Breakdown of the password's security</em></p>
   <img src="assets/df-pwdstg.png" alt="Password strength" width="500">
@@ -50,17 +50,17 @@
 <div align="center">
   <p>datFlux comes with multiple colorschemes to match your aesthetic:</p>
   <br>
-  
+
   <h3>Tokyo Night (Default)</h3>
   <p><em>Inspired by the beautiful city of Tokyo at night</em></p>
   <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
   <br><br>
-  
+
   <h3>Ozone-10</h3>
   <p><em>Inspired by polluted city sky colors</em></p>
   <img src="assets/df-ozone10.png" alt="Ozone-10 theme" width="500">
   <br><br>
-  
+
   <h3>Hydrangea 11</h3>
   <p><em>Inspired by hydrangea flowers</em></p>
   <img src="assets/df-hydrangea11.png" alt="Hydrangea 11 theme" width="500">
@@ -73,9 +73,9 @@
 <br>
 
 <div align="center">
-  
+
 ## § System Requirements
-  
+
 ![Linux: Full Support](https://img.shields.io/badge/Linux-Full%20Support-success?logo=linux&logoColor=white)
 ![macOS: Partial Support](https://img.shields.io/badge/macOS-Partial%20Support-yellow?logo=apple&logoColor=white)
 ![Windows: Not Supported](https://img.shields.io/badge/Windows-Not%20Supported-critical?logo=windows&logoColor=white)
@@ -102,16 +102,19 @@
 
   <p><strong>High-Entropy Password Generation</strong><br>creates strong passwords using real system noise</p>
   <br>
-  
+
   <p><strong>Cinematic Password Reveal Animation</strong><br>visually decrypts passwords character by character</p>
   <br>
-  
+
+  <p><strong>Multiple Attack Models</strong><br>test against different threat scenarios from online attacks to QC</p>
+  <br>
+
   <p><strong>System Metrics Dashboard</strong><br>live CPU, RAM, and Network usage monitoring</p>
   <br>
-  
+
   <p><strong>Entropy Quality Indicator</strong><br>monitors randomness quality in real-time</p>
   <br>
-  
+
   <p><strong>Clipboard Integration</strong><br>copy passwords to your clipboard with a single keystroke</p>
 </div>
 
@@ -135,7 +138,7 @@ cd datFlux
 
   <p>The installer will build datFlux and add it to your system path.</p>
   <br>
-  
+
   <h3>From Source (Manual)</h3>
 
 ```bash
@@ -172,10 +175,11 @@ datflux
 ```
 
   <h3>Key Commands</h3>
-  
+
   <p>
     <kbd>r</kbd> - generate password<br>
     <kbd>c</kbd> - copy the password<br>
+    <kbd>o</kbd> - cycle attack models<br>
     <kbd>t</kbd> - cycle through themes<br>
     <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
   </p>
@@ -184,28 +188,28 @@ datflux
 <br><br>
 
 <div align="center">
-  
+
 ## § How It Works
 
   <p>datFlux creates background system load through various noise generation methods:</p>
   <br>
-  
+
   <p><strong>1. CPU Noise</strong><br>performs complex mathematical operations</p>
   <br>
-  
+
   <p><strong>2. RAM Noise</strong><br>allocates and manipulates memory blocks</p>
   <br>
-  
+
   <p><strong>3. Network Noise</strong><br>creates local network connections and data transfer</p>
   <br>
-  
+
   <p>These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
 </div>
 
 <br><br>
 
 <div align="center">
-  
+
 ## § Security Considerations
 
   <p>• datFlux password generation happens locally with zero network transmission</p>
@@ -214,7 +218,7 @@ datflux
 </div>
 
 <br><br>
-  
+
 #
 
 <div align="center">
