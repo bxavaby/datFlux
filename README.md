@@ -199,7 +199,7 @@ datflux
   <p><strong>3. Network Noise</strong><br>creates local network connections and data transfer</p>
   <br>
   
-  <p>These operations generate entropy that is collected, hashed, and used to create unpredictable,<br>secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
+  <p>These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
 </div>
 
 <br><br>
