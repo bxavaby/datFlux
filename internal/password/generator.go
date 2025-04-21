@@ -215,14 +215,21 @@ func GetCrackTimeDescription(seconds float64) string {
 	case seconds < 10*century:
 		return fmt.Sprintf("%d centuries", int(seconds/century))
 	case seconds < universeAge:
-		millennia := int(seconds / (10 * century))
-		if millennia < 100 {
+		billionYears := seconds / year / 1e9
+
+		if billionYears < 0.1 {
+			millennia := int(seconds / (10 * century))
 			return fmt.Sprintf("%d millennia", millennia)
 		}
-		return fmt.Sprintf("%.1f billion years", seconds/year/1e9)
+
+		return fmt.Sprintf("%.1f billion years", billionYears)
 	default:
 		cosmicScale := seconds / universeAge
 		if cosmicScale < 1000 {
+			// at least 1.1x, to avoid strange values
+			if cosmicScale < 1.1 {
+				return "the age of the universe"
+			}
 			return fmt.Sprintf("%.1f× the age of the universe", cosmicScale)
 		}
 		return "until the heat death of the universe"
