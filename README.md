@@ -92,7 +92,7 @@
 
 <br><br>
 
-> ※ For the best experience, try datFlux on a Linux system
+> ※ For the best experience, try datFlux on a Linux system.
 
 <br>
 
@@ -117,6 +117,10 @@
 
   <p><strong>Clipboard Integration</strong><br>copy passwords to your clipboard with a single keystroke</p>
 </div>
+
+<br><br>
+
+> ※ The quantum computing attack model provides time estimates with approximately 5-8% margin of error when compared to theoretical calculations. These estimates are rounded to the nearest time unit for readability.
 
 <br><br>
 
