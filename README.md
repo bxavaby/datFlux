@@ -53,28 +53,28 @@
 
   <h3>Tokyo Night (Default)</h3>
   <p><em>Inspired by the beautiful city of Tokyo at night</em></p>
-  <a href="https://github.com/enkia/tokyo-night-vscode-theme" target="_blank">
+  <a href="https://github.com/enkia/tokyo-night-vscode-theme" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
   </a>
   <br><br>
 
   <h3>Ozone-10</h3>
   <p><em>Inspired by polluted city sky colors</em></p>
-  <a href="https://lospec.com/palette-list/ozone-10" target="_blank">
+  <a href="https://lospec.com/palette-list/ozone-10" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-ozone10.png" alt="Ozone-10 theme" width="500">
   </a>
   <br><br>
 
   <h3>Hydrangea 11</h3>
   <p><em>Inspired by hydrangea flowers</em></p>
-  <a href="https://lospec.com/palette-list/hydrangea-11" target="_blank">
+  <a href="https://lospec.com/palette-list/hydrangea-11" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-hydrangea11.png" alt="Hydrangea 11 theme" width="500">
   </a>
   <br><br>
 
   <h3>Leopold's Dreams</h3>
   <p><em>Inspired by blueish melancholic sci-fi scenarios</em></p>
-  <a href="https://lospec.com/palette-list/leopolds-dreams" target="_blank">
+  <a href="https://lospec.com/palette-list/leopolds-dreams" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-leopoldsdreams.png" alt="Leopold's Dreams theme" width="500">
   </a>
 </div>
@@ -244,7 +244,7 @@ datflux
 
 <div align="center">
   <p>
-    <a href="https://github.com/bxavaby">
+    <a href="https://github.com/bxavaby" target="_blank" rel="noopener noreferrer">
       <img src="https://img.shields.io/badge/crafted_with_%E2%9D%A4%EF%B8%8F_by-bxavaby-7aa2f7?style=for-the-badge" alt="Created by bxavaby">
     </a>
   </p>
