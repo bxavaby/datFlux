@@ -15,9 +15,9 @@ type NoiseGenerator struct {
 	systemMetrics chan EntropySource
 }
 
-func NewNoiseGenerator() *NoiseGenerator {
+func NewNoiseGenerator(collector *Collector) *NoiseGenerator {
 	ng := &NoiseGenerator{
-		collector:     NewCollector(200*time.Millisecond, 10),
+		collector:     collector,
 		stopChan:      make(chan struct{}),
 		systemMetrics: make(chan EntropySource, 10),
 	}

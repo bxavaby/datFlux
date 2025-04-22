@@ -1,7 +1,7 @@
 // Tested:
 // - Tokyo Night (Perfect default)
 // - Ozone 10 (Good)
-// - Hydrangea 11 (Good)
+// - Hydrangea 11 (Lovely)
 // - Leopold's Dreams (Good)
 // - Nyx8 (Does not fit)
 // - Citrink (Does not fit)
@@ -22,6 +22,7 @@
 // - CUSTODIAN-8
 // - slimy 05
 // - ABYSS-9
+// - vividmemory8
 
 package ui
 

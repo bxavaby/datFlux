@@ -236,6 +236,9 @@ datflux
   <p>• System load is optimized with safeguards to collect entropy efficiently</p>
   <p>• Your passwords remain on-device until you explicitly copy them elsewhere</p>
   <p>• Uses BLAKE2s cryptographic hashing for superior performance and security compared to traditional SHA-256</p>
+  <p>• Implements the Fortuna cryptographically secure random number generator (CSRNG)</p>
+  <p>• Maintains persistent entropy across sessions using a protected seed file</p>
+  <p>• Employs 32 separate entropy pools for resistance against entropy compromise attacks</p>
 </div>
 
 <br><br>

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"datflux/internal/entropy"
 	"datflux/internal/ui"
@@ -11,11 +12,13 @@ import (
 )
 
 func main() {
-	noiseGen := entropy.NewNoiseGenerator()
+	collector := entropy.NewCollector(time.Millisecond*100, 50)
+	noiseGen := entropy.NewNoiseGenerator(collector)
+	defer collector.Close()
 	defer noiseGen.Stop()
 
 	p := tea.NewProgram(
-		ui.NewDashboardModel(noiseGen.Collector()),
+		ui.NewDashboardModel(collector),
 		tea.WithAltScreen(),
 		tea.WithMouseCellMotion(),
 	)

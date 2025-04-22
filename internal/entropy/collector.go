@@ -4,10 +4,12 @@ import (
 	"encoding/binary"
 	"fmt"
 	"math"
+	"os"
 	"sync"
 	"time"
 
 	"github.com/dchest/blake2s"
+	"github.com/seehuhn/fortuna"
 )
 
 type EntropySource struct {
@@ -26,6 +28,10 @@ type Collector struct {
 	lastEntropy   []byte
 	lastSeedValue int64
 
+	// Fortuna RNG
+	rng         *fortuna.Accumulator
+	entropySink chan<- []byte
+
 	// metrics for entropy estimation
 	sampleVariance map[string]float64
 	prevValues     map[string]float64
@@ -37,6 +43,17 @@ func NewCollector(samplingRate time.Duration, maxSamples int) *Collector {
 		maxSamples = 10
 	}
 
+	homeDir, _ := os.UserHomeDir()
+	seedFile := homeDir + "/.datflux_seed"
+
+	rng, err := fortuna.NewRNG(seedFile)
+	if err != nil {
+		// if the file-backed RNG cannot be created, use an in-memory one
+		rng, _ = fortuna.NewRNG("")
+	}
+
+	sink := rng.NewEntropyDataSink()
+
 	return &Collector{
 		samples:        make([]EntropySource, 0, maxSamples),
 		maxSamples:     maxSamples,
@@ -45,6 +62,19 @@ func NewCollector(samplingRate time.Duration, maxSamples int) *Collector {
 		sampleVariance: make(map[string]float64),
 		prevValues:     make(map[string]float64),
 		entropyScore:   0.0,
+		rng:            rng,
+		entropySink:    sink,
+	}
+}
+
+func (c *Collector) Close() {
+	if c.entropySink != nil {
+		close(c.entropySink)
+		c.entropySink = nil
+	}
+
+	if c.rng != nil {
+		c.rng.Close()
 	}
 }
 
@@ -58,6 +88,27 @@ func (c *Collector) AddSample(source EntropySource) {
 	}
 
 	c.updateEntropyEstimate(source)
+
+	// add sample data to Fortuna
+	sampleBytes := []byte(fmt.Sprintf(
+		"%f|%f|%f|%f|%d|%d",
+		source.CPU,
+		source.Memory,
+		source.NetworkRx,
+		source.NetworkTx,
+		source.Timestamp,
+		time.Now().UnixNano(),
+	))
+
+	// send to entropy sink
+	if c.entropySink != nil {
+		select {
+		case c.entropySink <- sampleBytes:
+		// sent successfully
+		default:
+			// channel full, skip sample
+		}
+	}
 }
 
 func (c *Collector) updateEntropyEstimate(source EntropySource) {
@@ -104,43 +155,36 @@ func (c *Collector) GenerateSeed() int64 {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	if len(c.samples) == 0 {
+	if c.rng == nil {
 		// use current time as fallback
 		return time.Now().UnixNano()
 	}
 
-	var entropyData string
-	for _, sample := range c.samples {
-		entropyData += fmt.Sprintf(
-			"%f|%f|%f|%f|%d|",
-			sample.CPU,
-			sample.Memory,
-			sample.NetworkRx,
-			sample.NetworkTx,
-			sample.Timestamp,
-		)
-	}
-
-	// extra entropy sources
-	entropyData += fmt.Sprintf("|%d|%d|%.6f|",
-		time.Now().UnixNano(),
-		c.lastSeedValue,
-		c.entropyScore,
-	)
-
-	// 2x hash for better distribution
-	h1 := blake2s.New256()
-	h1.Write([]byte(entropyData))
-	firstHash := h1.Sum(nil)
-
-	h2 := blake2s.New256()
-	h2.Write(firstHash)
-	c.lastEntropy = h2.Sum(nil)
-
-	seed := int64(binary.LittleEndian.Uint64(c.lastEntropy[:8]))
+	// get 8 bytes from Fortuna
+	randomBytes := c.rng.RandomData(8)
+	seed := int64(binary.LittleEndian.Uint64(randomBytes))
 	c.lastSeedValue = seed
 
+	// get 32 bytes for entropy quality
+	c.lastEntropy = c.rng.RandomData(32)
+
 	return seed
+}
+
+// returns the full 32 bytes (256 bits) of entropy
+func (c *Collector) GetRawEntropy() []byte {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if c.rng == nil {
+		// fallback to Blake2s hash of system time
+		h := blake2s.New256()
+		h.Write([]byte(fmt.Sprintf("%d", time.Now().UnixNano())))
+		return h.Sum(nil)
+	}
+
+	// return 32 bytes (256 bits) of entropy from Fortuna
+	return c.rng.RandomData(32)
 }
 
 func (c *Collector) GetEntropyQuality() float64 {
