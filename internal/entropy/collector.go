@@ -1,12 +1,13 @@
 package entropy
 
 import (
-	"crypto/sha256"
 	"encoding/binary"
 	"fmt"
 	"math"
 	"sync"
 	"time"
+
+	"github.com/dchest/blake2s"
 )
 
 type EntropySource struct {
@@ -128,11 +129,11 @@ func (c *Collector) GenerateSeed() int64 {
 	)
 
 	// 2x hash for better distribution
-	h1 := sha256.New()
+	h1 := blake2s.New256()
 	h1.Write([]byte(entropyData))
 	firstHash := h1.Sum(nil)
 
-	h2 := sha256.New()
+	h2 := blake2s.New256()
 	h2.Write(firstHash)
 	c.lastEntropy = h2.Sum(nil)
 
