@@ -56,7 +56,6 @@
   <a href="https://github.com/enkia/tokyo-night-vscode-theme" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
   </a>
-  <p><small>by <a href="https://github.com/enkia" target="_blank" rel="noopener noreferrer">@enkia</a></small></p>
   <br><br>
 
   <h3>Ozone-10</h3>
