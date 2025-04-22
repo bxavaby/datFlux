@@ -2,7 +2,7 @@
   <img src="assets/df-lg.png" alt="datFlux Logo" width="300"/>
 
   <h1>datFlux</h1>
-  <p><em>An entropy-borne password generator with a Tokyo Night TUI dashboard</em></p>
+  <p><em>An entropy-borne password generator with a sightly TUI dashboard</em></p>
 
   <a href="#-features"><img src="https://img.shields.io/badge/Features-Overview-1a1b26?color=7aa2f7" alt="Features"></a>
   <a href="#-installation"><img src="https://img.shields.io/badge/Installation-Guide-1a1b26?color=9ece6a" alt="Installation"></a>
@@ -56,7 +56,6 @@
   <a href="https://github.com/enkia/tokyo-night-vscode-theme" target="_blank" rel="noopener noreferrer">
     <img src="assets/df-tn.png" alt="Tokyo Night theme" width="500">
   </a>
-  <p><small>by <a href="https://github.com/enkia" target="_blank" rel="noopener noreferrer">@enkia</a></small></p>
   <br><br>
 
   <h3>Ozone-10</h3>
