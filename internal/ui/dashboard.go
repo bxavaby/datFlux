@@ -38,6 +38,9 @@ type Dashboard struct {
 	memProgress        progress.Model
 	themeManager       *ThemeManager
 	currentTheme       ThemeType
+	regularTheme       ThemeType
+	paranoiaMode       bool
+	paranoiaTheme      Theme
 }
 
 func NewDashboardModel(collector *entropy.Collector) *Dashboard {
@@ -48,6 +51,8 @@ func NewDashboardModel(collector *entropy.Collector) *Dashboard {
 	sysMonitor := monitor.NewSystemMonitor()
 
 	passGen := password.NewGenerator(collector)
+
+	passGen.SetParanoiaMode(false, 25)
 
 	anim := NewPasswordAnimation(passGen)
 
@@ -65,7 +70,46 @@ func NewDashboardModel(collector *entropy.Collector) *Dashboard {
 		memProgress:        memBar,
 		themeManager:       themeManager,
 		currentTheme:       themeManager.currentTheme,
+		regularTheme:       themeManager.currentTheme,
+		paranoiaMode:       false,
+		paranoiaTheme:      createMidnightAblazeTheme(),
 		currentAttackModel: password.OnlineRateLimited,
+	}
+}
+
+// method to toggle paranoia mode
+func (d *Dashboard) ToggleParanoiaMode() {
+	if d.animation.IsAnimating {
+		return
+	}
+
+	d.paranoiaMode = !d.paranoiaMode
+	d.passwordGen.SetParanoiaMode(d.paranoiaMode, 25)
+	d.animation.ParanoiaMode = d.paranoiaMode
+
+	// clear password when toggling modes
+	d.lastPassword = ""
+	d.animation.Current = "Press 'r' to generate a password"
+	d.animation.Target = ""
+
+	if d.paranoiaMode {
+		// switch to paranoia
+		d.regularTheme = d.currentTheme
+		d.currentTheme = ThemeMidnightAblaze
+		InitializeStyles(d.paranoiaTheme)
+
+		// regenerate with the new theme
+		d.cpuProgress = CPUProgress
+		d.memProgress = MemoryProgress
+
+	} else {
+		// back to regular theme
+		d.currentTheme = d.regularTheme
+		InitializeStyles(d.themeManager.GetCurrentTheme())
+
+		// regenerate with the original theme
+		d.cpuProgress = CPUProgress
+		d.memProgress = MemoryProgress
 	}
 }
 
@@ -125,7 +169,13 @@ func copyToClipboardCmd(text string) tea.Cmd {
 }
 
 func (d *Dashboard) SwitchTheme() {
+	if d.paranoiaMode {
+		// no theme switching in paranoia mode
+		return
+	}
+
 	d.currentTheme = d.themeManager.CycleTheme()
+	d.regularTheme = d.currentTheme
 
 	InitializeStyles(d.themeManager.GetCurrentTheme())
 
@@ -217,6 +267,12 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "o":
 			d.CycleAttackModel()
 			return d, nil
+
+		case "p":
+			if !d.animation.IsAnimating {
+				d.ToggleParanoiaMode()
+			}
+			return d, nil
 		}
 	}
 
@@ -232,8 +288,14 @@ func (d *Dashboard) View() string {
 
 	docStyle := lipgloss.NewStyle().Padding(0, 2)
 
-	titleView := TitleStyle.Width(contentWidth).Render(fmt.Sprintf("🌸 [datFlux] Entropy-Borne Password Generator [%s]",
-		d.themeManager.GetCurrentTheme().Name))
+	var titleText string
+	if d.paranoiaMode {
+		titleText = fmt.Sprintf("🛡️ [datFlux] Entropy-Borne Password Generator [Paranoia Mode]")
+	} else {
+		titleText = fmt.Sprintf("🌸 [datFlux] Entropy-Borne Password Generator [%s]",
+			d.themeManager.GetCurrentTheme().Name)
+	}
+	titleView := TitleStyle.Width(contentWidth).Render(titleText)
 
 	// vertical layout always
 	passwordView := renderPasswordView(
@@ -278,7 +340,7 @@ func (d *Dashboard) View() string {
 	if d.clipboardStatus != "" {
 		helpText = ValueStyle.Render(d.clipboardStatus)
 	} else {
-		helpText = HelpStyle.Render("[r] ⟳ gen | [c] ⎘ copy | [o] model | [t] theme | [q] quit")
+		helpText = HelpStyle.Render("[r] ⟳ gen | [c] ⎘ copy | [o] model | [t] theme | [p] paranoia | [q] quit")
 	}
 
 	return docStyle.Render(

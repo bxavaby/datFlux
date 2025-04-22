@@ -122,21 +122,26 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 			// strength meter
 			builder.WriteString(renderStrengthMeter(strength.Score, width-10))
 
-			// crack time w current model
-			crackTimeDesc := passwordGen.GetCrackTimeForModel(passwordText, attackModel)
-			crackTimeText := fmt.Sprintf("Time to crack: %s", crackTimeDesc)
-			builder.WriteString("\n" + renderStrengthText(crackTimeText, strength.Score))
+			// length and entropy stats
+			statsText := fmt.Sprintf("Length: %d | Entropy: %.1f bits", len(passwordText), strength.EntropyBits)
+			builder.WriteString("\n" + VeryStrongPwdStyle.Render(statsText))
 
-			// attack model info
-			models := password.GetAttackModels()
-			currentModel := models[attackModel]
-			modelText := fmt.Sprintf("Attack model: %s", currentModel.Name)
-			builder.WriteString("\n" + ValueStyle.Render(modelText))
+			// special note for paranoia mode, due to the extreme security level
+			paranoiaMode, _ := passwordGen.GetParanoiaMode()
+			if paranoiaMode {
+				builder.WriteString("\n" + ValueStyle.Render("Password exceeds quantum-resistant security threshold"))
+				builder.WriteString("\n" + ValueStyle.Render("Time to crack: Beyond any feasible computation"))
+			} else {
+				// crack time w current model for standard mode
+				crackTimeDesc := passwordGen.GetCrackTimeForModel(passwordText, attackModel)
+				crackTimeText := fmt.Sprintf("Time to crack: %s", crackTimeDesc)
+				builder.WriteString("\n" + renderStrengthText(crackTimeText, strength.Score))
 
-			// entropy information (if the screen is large enough)
-			if width > 60 {
-				entropyText := fmt.Sprintf("Entropy: %.1f bits", strength.EntropyBits)
-				builder.WriteString("\n" + ValueStyle.Render(entropyText))
+				// attack model info
+				models := password.GetAttackModels()
+				currentModel := models[attackModel]
+				modelText := fmt.Sprintf("Attack model: %s", currentModel.Name)
+				builder.WriteString("\n" + ValueStyle.Render(modelText))
 			}
 
 			// feedback, if any

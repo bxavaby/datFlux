@@ -5,11 +5,11 @@
 // - Leopold's Dreams (Good)
 // - Nyx8 (Does not fit)
 // - Citrink (Does not fit)
-// --------------------------------
+// - Midnight Ablaze (Paranoia Mode)
+// ----------------------------------
 // To try:
 // - Moonlight GB
 // - 2bit demichrome
-// - Midnight ablaze
 // - Oil 6
 // - Berry Nebula
 // - Cryptic Ocean
@@ -37,6 +37,7 @@ const (
 	ThemeOzone10        ThemeType = "ozone-10"
 	ThemeHydrangea      ThemeType = "hydrangea 11"
 	ThemeLeopoldsDreams ThemeType = "leopold's dreams"
+	ThemeMidnightAblaze ThemeType = "midnight ablaze" // paranoia theme
 )
 
 type Theme struct {
@@ -235,5 +236,33 @@ func createLeopoldsDreamsTheme() Theme {
 		DangerStr:          "#52c33f",
 		StrongColorStr:     "#6dbcb9",
 		VeryStrongColorStr: "#8cefb6",
+	}
+}
+
+// Midnight Ablaze
+func createMidnightAblazeTheme() Theme {
+	return Theme{
+		Name:        "Midnight Ablaze",
+		Description: "Made for a very ominous night sky.",
+
+		Primary:   lipgloss.Color("#130208"),
+		Secondary: lipgloss.Color("#31051e"),
+		Accent:    lipgloss.Color("#7c183c"),
+		Highlight: lipgloss.Color("#d53c6a"),
+		Warning:   lipgloss.Color("#ffcc00"),
+		Danger:    lipgloss.Color("#460e2b"),
+
+		PasswordColor:   lipgloss.Color("#ff8274"),
+		StrongColor:     lipgloss.Color("#d53c6a"),
+		VeryStrongColor: lipgloss.Color("#ff8274"),
+
+		PrimaryStr:         "#130208",
+		SecondaryStr:       "#31051e",
+		AccentStr:          "#7c183c",
+		HighlightStr:       "#d53c6a",
+		WarningStr:         "#ffcc00",
+		DangerStr:          "#460e2b",
+		StrongColorStr:     "#d53c6a",
+		VeryStrongColorStr: "#ff8274",
 	}
 }

@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"path/filepath"
 	"sync"
 	"time"
 
+	"github.com/dchest/blake2b"
 	"github.com/dchest/blake2s"
 	"github.com/seehuhn/fortuna"
 )
@@ -38,13 +40,34 @@ type Collector struct {
 	entropyScore   float64
 }
 
+func getSeedFilePath() string {
+	var basePath string
+
+	// try XDG_CONFIG_HOME first
+	if configDir := os.Getenv("XDG_CONFIG_HOME"); configDir != "" {
+		basePath = filepath.Join(configDir, "datflux")
+	} else {
+		//  ~/.config/datflux fallback
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			// use the current directory as ultimate fallback
+			return "datflux_seed"
+		}
+		basePath = filepath.Join(homeDir, ".config", "datflux")
+	}
+
+	// if it doesn't exist, create directory with restrictive permissions
+	os.MkdirAll(basePath, 0700)
+
+	return filepath.Join(basePath, "seed")
+}
+
 func NewCollector(samplingRate time.Duration, maxSamples int) *Collector {
 	if maxSamples <= 0 {
 		maxSamples = 10
 	}
 
-	homeDir, _ := os.UserHomeDir()
-	seedFile := homeDir + "/.datflux_seed"
+	seedFile := getSeedFilePath()
 
 	rng, err := fortuna.NewRNG(seedFile)
 	if err != nil {
@@ -185,6 +208,22 @@ func (c *Collector) GetRawEntropy() []byte {
 
 	// return 32 bytes (256 bits) of entropy from Fortuna
 	return c.rng.RandomData(32)
+}
+
+// returns 64 bytes (512 bits) of entropy for paranoia mode
+func (c *Collector) GetRawEntropy512() []byte {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if c.rng == nil {
+		// fallback to Blake2b hash of system time
+		h := blake2b.New512()
+		h.Write([]byte(fmt.Sprintf("%d", time.Now().UnixNano())))
+		return h.Sum(nil)
+	}
+
+	// return 64 bytes (512 bits) of entropy from Fortuna
+	return c.rng.RandomData(64)
 }
 
 func (c *Collector) GetEntropyQuality() float64 {

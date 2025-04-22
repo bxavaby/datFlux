@@ -20,6 +20,7 @@ type PasswordAnimation struct {
 	Delay           time.Duration
 	Generator       *password.Generator
 	lastUpdateTime  time.Time
+	ParanoiaMode    bool
 }
 
 func NewPasswordAnimation(generator *password.Generator) *PasswordAnimation {
@@ -36,6 +37,82 @@ func NewPasswordAnimation(generator *password.Generator) *PasswordAnimation {
 	}
 }
 
+// renders the revealed portion
+func (pa *PasswordAnimation) RenderRevealedPart(revealLen int) string {
+	if revealLen <= 0 {
+		return ""
+	}
+	chars := []rune(pa.Current)
+	return PasswordStyle.Render(string(chars[:revealLen]))
+}
+
+// renders the binary entropy stream
+func (pa *PasswordAnimation) RenderBinaryStream(length int) string {
+	var stream strings.Builder
+
+	for i := 0; i < length; i++ {
+		// binary digits based on animation phase and position
+		bitValue := rand.Intn(2)
+		if bitValue == 0 {
+			stream.WriteString(DangerStyle.Render("0"))
+		} else {
+			stream.WriteString(StrongPwdStyle.Render("1"))
+		}
+	}
+	return stream.String()
+}
+
+// renders the next character to be revealed
+func (pa *PasswordAnimation) RenderNextChar(position int) string {
+	chars := []rune(pa.Current)
+
+	if position >= len(chars) {
+		return ""
+	}
+
+	nextChar := string(chars[position])
+	if pa.Progress%pa.FlickersPerChar == 0 {
+		nextChar = string(pa.Generator.GenerateRandomChar())
+	}
+
+	return VeryStrongPwdStyle.Bold(true).Render(nextChar)
+}
+
+// special animation for paranoia mode
+func (pa *PasswordAnimation) ParanoiaModeAnimation() string {
+	if !pa.IsAnimating {
+		return PasswordStyle.Render(pa.Current)
+	}
+
+	var result strings.Builder
+	charPos := pa.Progress / pa.FlickersPerChar
+	chars := []rune(pa.Current)
+	revealLen := min(charPos, len(chars))
+
+	// show what's revealed so far
+	result.WriteString(pa.RenderRevealedPart(revealLen))
+
+	// show the binary stream animation, if not complete
+	if revealLen < len(chars) {
+		// add any spacing needed between revealed part and animation
+		result.WriteString(" ")
+
+		// binary entropy stream (varies with progress)
+		streamLength := min(20, len(chars)-revealLen) // up to 20 binary digits
+		binaryStream := pa.RenderBinaryStream(streamLength)
+		result.WriteString(" " +
+			VeryStrongPwdStyle.Render("[") +
+			binaryStream +
+			VeryStrongPwdStyle.Render("]") +
+			" ")
+
+		// small preview of next character
+		result.WriteString(pa.RenderNextChar(revealLen))
+	}
+
+	return result.String()
+}
+
 // begins a new password reveal animation
 func (pa *PasswordAnimation) StartAnimation(password string) {
 	pa.Target = password
@@ -44,6 +121,17 @@ func (pa *PasswordAnimation) StartAnimation(password string) {
 	pa.ColorPhase = 0
 	pa.Current = strings.Repeat("?", len(password))
 	pa.lastUpdateTime = time.Now()
+
+	// adjust for paranoia mode
+	if pa.ParanoiaMode && len(password) > 40 {
+		// Faster animation
+		pa.FlickersPerChar = 2           // fewer flickers per char
+		pa.Delay = time.Millisecond * 20 // halve delay
+	} else {
+		// standard speed
+		pa.FlickersPerChar = 3
+		pa.Delay = time.Millisecond * 40
+	}
 }
 
 func (pa *PasswordAnimation) Update() bool {
@@ -95,6 +183,10 @@ func (pa *PasswordAnimation) CurrentPassword() string {
 }
 
 func (pa *PasswordAnimation) StyledPassword() string {
+	if pa.ParanoiaMode {
+		return pa.ParanoiaModeAnimation()
+	}
+
 	if !pa.IsAnimating {
 		return PasswordStyle.Render(pa.Current)
 	}

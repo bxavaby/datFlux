@@ -80,6 +80,14 @@
     <img src="assets/df-leopoldsdreams.png" alt="Leopold's Dreams theme" width="500">
   </a>
   <p><small>by <a href="https://lospec.com/sukinapan" target="_blank" rel="noopener noreferrer">@sukinapan</a></small></p>
+  <br><br>
+
+  <h3>Midnight Ablaze (Paranoia Mode)</h3>
+  <p><em>Inspired by a very ominous night sky</em></p>
+  <a href="https://lospec.com/palette-list/midnight-ablaze" target="_blank" rel="noopener noreferrer">
+    <img src="assets/df-paranoia.png" alt="Midnight Ablaze theme" width="500">
+  </a>
+  <p><small>by <a href="https://lospec.com/inkpendude" target="_blank" rel="noopener noreferrer">@inkpendude</a></small></p>
 </div>
 
 <br><br>
@@ -201,6 +209,7 @@ datflux
     <kbd>c</kbd> - copy the password<br>
     <kbd>o</kbd> - cycle attack models<br>
     <kbd>t</kbd> - cycle through themes<br>
+    <kbd>p</kbd> - toggle paranoia mode<br>
     <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
   </p>
 </div>
@@ -240,6 +249,103 @@ datflux
   <p>• Maintains persistent entropy across sessions using a protected seed file</p>
   <p>• Employs 32 separate entropy pools for resistance against entropy compromise attacks</p>
 </div>
+
+<br><br>
+
+<div align="center">
+
+## § Entropy Testing Results
+
+  <h3>The Scientific Analysis</h3>
+  <p>All security claims are backed by <a href="https://github.com/bxavaby/datFlux/tree/main/test/entropytest">empirical testing</a> of password entropy generation.</p>
+  <br>
+
+  <h3>Standard Mode</h3>
+  <p><em>Tested across 1,000 password samples:</em></p>
+  <table>
+    <tr>
+      <td align="right"><strong>Average Entropy:</strong></td>
+      <td>136.13 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Range:</strong></td>
+      <td>72.05 - 210.24 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Standard Deviation:</strong></td>
+      <td>29.80 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Typical Length:</strong></td>
+      <td>16-32 characters</td>
+    </tr>
+  </table>
+  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropytest/standard_mode.txt">View detailed test results</a></small></p>
+  <br>
+
+  <h3>Paranoia Mode</h3>
+  <p><em>Tested across 100 password samples with 25 candidates each:</em></p>
+  <table>
+    <tr>
+      <td align="right"><strong>Average Entropy:</strong></td>
+      <td>461.01 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Range:</strong></td>
+      <td>433.27 - 487.26 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Standard Deviation:</strong></td>
+      <td>12.98 bits</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Typical Length:</strong></td>
+      <td>70-80 characters</td>
+    </tr>
+  </table>
+  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropytest/paranoia_mode.txt">View detailed test results</a></small></p>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Standard%20Mode-136%20bits-7aa2f7" alt="Standard Mode Entropy">
+  <img src="https://img.shields.io/badge/Paranoia%20Mode-461%20bits-bb9af7" alt="Paranoia Mode Entropy">
+</div>
+
+<br><br>
+
+> #### Security Perspective
+> * **Classical Computing**: 80 bits is considered secure
+> * **Quantum Computing**: 256 bits is considered resistant
+> * **datFlux Standard Mode**: 136 bits (exceeds classical requirements)
+> * **datFlux Paranoia Mode**: 461 bits (exceeds quantum requirements by ~200 bits)
+
+<br><br>
+
+<div align="center">
+
+## § Enhanced Security with Paranoia Mode
+
+  <p><strong>Ultra-High Entropy Generation</strong><br>empirically verified to produce passwords with ~461 bits of entropy<br>(nearly double the quantum resistance threshold)</p>
+  <br>
+
+  <p><strong>Multi-candidate Selection</strong><br>generates and evaluates 25 password candidates in parallel,<br>selecting the strongest option based on cryptographic analysis</p>
+  <br>
+
+  <p><strong>Extended Length Range</strong><br>creates passwords of 48-80 characters (70-80 in practice)<br>with sophisticated character distribution for maximum security</p>
+  <br>
+
+  <p><strong>Binary Stream Visualization</strong><br>features a unique animation showing entropy bits<br>transforming into your high-security password</p>
+  <br>
+
+  <p><strong>Toggle with a Single Key</strong><br>seamlessly switch between standard and paranoia modes<br>by pressing <kbd>p</kbd> any time</p>
+
+</div>
+
+<br><br>
+
+> ※ Paranoia Mode uses a design parameter of 48-80 characters, but the empirical test shows that when selecting the highest-entropy candidate from 25 options, the chosen passwords typically fall in the 70-80 character range. Therefore, PM is designed for situations requiring exceptional security, such as master passwords, cryptocurrency wallets, or sensitive data encryption. While Standard Mode already provides strong security (~136 bits), PM's 461-bit entropy exceeds even theoretical quantum computing attack thresholds by a substantial margin.
 
 <br><br>
 

@@ -1,9 +1,11 @@
 package password
 
 import (
+	"encoding/binary"
 	"fmt"
 	"math"
 	"math/rand"
+	"sync"
 
 	"datflux/internal/entropy"
 
@@ -11,13 +13,15 @@ import (
 )
 
 type Generator struct {
-	collector  *entropy.Collector
-	minLength  int
-	maxLength  int
-	useSymbols bool
-	useNumbers bool
-	useUpper   bool
-	useLower   bool
+	collector       *entropy.Collector
+	minLength       int
+	maxLength       int
+	useSymbols      bool
+	useNumbers      bool
+	useUpper        bool
+	useLower        bool
+	paranoiaMode    bool
+	paranoiaSamples int
 }
 
 type PasswordStrength struct {
@@ -64,20 +68,78 @@ func GetAttackModels() []AttackModel {
 
 func NewGenerator(collector *entropy.Collector) *Generator {
 	return &Generator{
-		collector:  collector,
-		minLength:  16,
-		maxLength:  32,
-		useSymbols: true,
-		useNumbers: true,
-		useUpper:   true,
-		useLower:   true,
+		collector:       collector,
+		minLength:       16,
+		maxLength:       32,
+		useSymbols:      true,
+		useNumbers:      true,
+		useUpper:        true,
+		useLower:        true,
+		paranoiaMode:    false,
+		paranoiaSamples: 25,
 	}
 }
 
-// high-entropy password
-func (g *Generator) Generate() string {
-	seed := g.collector.GenerateSeed()
+func (g *Generator) SetParanoiaMode(enabled bool, samples int) {
+	g.paranoiaMode = enabled
+	g.paranoiaSamples = max(1, samples)
+}
 
+func (g *Generator) GetParanoiaMode() (bool, int) {
+	return g.paranoiaMode, g.paranoiaSamples
+}
+
+func (g *Generator) Generate() string {
+	if g.paranoiaMode {
+		return g.generateParanoid()
+	}
+
+	// standard
+	seed := g.collector.GenerateSeed()
+	return g.generateWithSeed(seed)
+}
+
+// out of 25 passwords, returns the one with highest entropy
+func (g *Generator) generateParanoid() string {
+	// pre-allocate candidates and corresponding entropy values
+	candidates := make([]string, g.paranoiaSamples)
+	entropies := make([]float64, g.paranoiaSamples)
+
+	// goroutines to get candidates in parallel
+	var wg sync.WaitGroup
+	wg.Add(g.paranoiaSamples)
+
+	for i := range make([]struct{}, g.paranoiaSamples) {
+		go func(index int) {
+			defer wg.Done()
+
+			// 512-bit entropy for each candidate password
+			entropyBytes := g.collector.GetRawEntropy512()
+			// first 8 bytes for seed
+			seed := int64(binary.LittleEndian.Uint64(entropyBytes[:8]))
+			candidates[index] = g.generateWithSeed(seed)
+
+			// analyze strength
+			strength := g.AnalyzeStrength(candidates[index])
+			entropies[index] = strength.EntropyBits
+		}(i)
+	}
+
+	wg.Wait()
+
+	// keep the one with highest entropy
+	bestIndex := 0
+	for i, entropy := range entropies {
+		if entropy > entropies[bestIndex] {
+			bestIndex = i
+		}
+	}
+
+	return candidates[bestIndex]
+}
+
+// uses the given seed to generate a password
+func (g *Generator) generateWithSeed(seed int64) string {
 	source := rand.NewSource(seed)
 	secureRand := rand.New(source)
 
@@ -109,7 +171,12 @@ func (g *Generator) Generate() string {
 		requiredChars = append(requiredChars, symbols[secureRand.Intn(len(symbols))])
 	}
 
+	// longer passwords in paranoia mode
 	passLength := g.minLength + secureRand.Intn(g.maxLength-g.minLength+1)
+	if g.paranoiaMode {
+		// 48-80 chars in paranoia mode
+		passLength = 48 + secureRand.Intn(33)
+	}
 	passLength = max(passLength, len(requiredChars))
 
 	password := make([]byte, passLength)
@@ -122,9 +189,18 @@ func (g *Generator) Generate() string {
 		password[i] = allChars[secureRand.Intn(len(allChars))]
 	}
 
-	for i := range password {
-		j := secureRand.Intn(i + 1)
-		password[i], password[j] = password[j], password[i]
+	// Fisher-Yates shuffle
+	// multiple passes in paranoia mode
+	numPasses := 1
+	if g.paranoiaMode {
+		numPasses = 3 // more thorough shuffling in paranoia mode
+	}
+
+	for range make([]struct{}, numPasses) {
+		for i := range password {
+			j := secureRand.Intn(i + 1)
+			password[i], password[j] = password[j], password[i]
+		}
 	}
 
 	return string(password)
