@@ -2,7 +2,7 @@
   <img src="assets/df-lg.png" alt="datFlux Logo" width="300"/>
 
   <h1>datFlux</h1>
-  <p><em>An entropy-borne password generator with a Tokyo Night TUI dashboard</em></p>
+  <p><em>An entropy-borne password generator with a sightly TUI dashboard</em></p>
 
   <a href="#-features"><img src="https://img.shields.io/badge/Features-Overview-1a1b26?color=7aa2f7" alt="Features"></a>
   <a href="#-installation"><img src="https://img.shields.io/badge/Installation-Guide-1a1b26?color=9ece6a" alt="Installation"></a>
