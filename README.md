@@ -235,6 +235,7 @@ datflux
   <p>• datFlux password generation happens locally with zero network transmission</p>
   <p>• System load is optimized with safeguards to collect entropy efficiently</p>
   <p>• Your passwords remain on-device until you explicitly copy them elsewhere</p>
+  <p>• Uses BLAKE2s cryptographic hashing for superior performance and security compared to traditional SHA-256</p>
 </div>
 
 <br><br>
