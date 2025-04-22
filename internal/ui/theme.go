@@ -1,3 +1,28 @@
+// Tested:
+// - Tokyo Night (Perfect default)
+// - Ozone 10 (Good)
+// - Hydrangea 11 (Good)
+// - Leopold's Dreams (Good)
+// - Nyx8 (Does not fit)
+// - Citrink (Does not fit)
+// --------------------------------
+// To try:
+// - Moonlight GB
+// - 2bit demichrome
+// - Midnight ablaze
+// - Oil 6
+// - Berry Nebula
+// - Cryptic Ocean
+// - Kirokaze Gameboy
+// - Dream Haze 8
+// - EPHEMERA
+// - Gothic Bit
+// - bluem0ld
+// - BloodMoon21
+// - CUSTODIAN-8
+// - slimy 05
+// - ABYSS-9
+
 package ui
 
 import (
@@ -7,9 +32,10 @@ import (
 type ThemeType string
 
 const (
-	ThemeTokyoNight ThemeType = "tokyo-night"
-	ThemeOzoneIO    ThemeType = "ozone-10"
-	ThemeHydrangea  ThemeType = "hydrangea 11"
+	ThemeTokyoNight     ThemeType = "tokyo-night"
+	ThemeOzone10        ThemeType = "ozone-10"
+	ThemeHydrangea      ThemeType = "hydrangea 11"
+	ThemeLeopoldsDreams ThemeType = "leopold's dreams"
 )
 
 type Theme struct {
@@ -52,8 +78,9 @@ func NewThemeManager() *ThemeManager {
 	}
 
 	tm.RegisterTheme(ThemeTokyoNight, createTokyoNightTheme())
-	tm.RegisterTheme(ThemeOzoneIO, createOzoneIOTheme())
+	tm.RegisterTheme(ThemeOzone10, createOzone10Theme())
 	tm.RegisterTheme(ThemeHydrangea, createHydrangeaTheme())
+	tm.RegisterTheme(ThemeLeopoldsDreams, createLeopoldsDreamsTheme())
 
 	return tm
 }
@@ -127,7 +154,7 @@ func createTokyoNightTheme() Theme {
 }
 
 // Ozone-10
-func createOzoneIOTheme() Theme {
+func createOzone10Theme() Theme {
 	return Theme{
 		Name:        "Ozone-10",
 		Description: "A soft palette inspired by polluted city sky colors.",
@@ -179,5 +206,33 @@ func createHydrangeaTheme() Theme {
 		DangerStr:          "#c090a7",
 		StrongColorStr:     "#c9d4b8",
 		VeryStrongColorStr: "#90c0a0",
+	}
+}
+
+// Leopold's Dreams
+func createLeopoldsDreamsTheme() Theme {
+	return Theme{
+		Name:        "Leopold's Dreams",
+		Description: "A blueish melancholic palette, good for water and/or sci-fi scenarios.",
+
+		Primary:   lipgloss.Color("#372134"),
+		Secondary: lipgloss.Color("#474476"),
+		Accent:    lipgloss.Color("#6dbcb9"),
+		Highlight: lipgloss.Color("#4888b7"),
+		Warning:   lipgloss.Color("#6dbcb9"),
+		Danger:    lipgloss.Color("#52c33f"),
+
+		PasswordColor:   lipgloss.Color("#4888b7"),
+		StrongColor:     lipgloss.Color("#6dbcb9"),
+		VeryStrongColor: lipgloss.Color("#8cefb6"),
+
+		PrimaryStr:         "#372134",
+		SecondaryStr:       "#474476",
+		AccentStr:          "#6dbcb9",
+		HighlightStr:       "#4888b7",
+		WarningStr:         "#6dbcb9",
+		DangerStr:          "#52c33f",
+		StrongColorStr:     "#6dbcb9",
+		VeryStrongColorStr: "#8cefb6",
 	}
 }

@@ -278,7 +278,7 @@ func (d *Dashboard) View() string {
 	if d.clipboardStatus != "" {
 		helpText = ValueStyle.Render(d.clipboardStatus)
 	} else {
-		helpText = HelpStyle.Render("[r] ⟳ gen | [c] ⎘ copy | [o] ⌬ model | [t] ◑ theme | [q] quit")
+		helpText = HelpStyle.Render("[r] ⟳ gen | [c] ⎘ copy | [o] model | [t] theme | [q] quit")
 	}
 
 	return docStyle.Render(
