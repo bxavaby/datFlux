@@ -89,7 +89,7 @@ func (d *Dashboard) ToggleParanoiaMode() {
 
 	// clear password when toggling modes
 	d.lastPassword = ""
-	d.animation.Current = "Press 'r' to generate a password"
+	d.animation.Current = "Press 'r' to generate"
 	d.animation.Target = ""
 
 	if d.paranoiaMode {

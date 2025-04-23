@@ -17,19 +17,10 @@ func renderCPUView(cpuUsage float64, progressBar progress.Model, width int) stri
 	builder.WriteString(SectionTitleStyle.Render("CPU USAGE"))
 	builder.WriteString("\n\n")
 
-	progressView := progressBar.ViewAs(cpuUsage / 100)
+	progressView := FormatProgressBar(progressBar, cpuUsage, width-10)
+	progressWithPercentage := AddPercentage(progressView, cpuUsage, width)
 
-	percentage := fmt.Sprintf(" %.1f%%", cpuUsage)
-	if cpuUsage > 85 {
-		percentage = DangerStyle.Render(percentage)
-	} else if cpuUsage > 60 {
-		percentage = WarningStyle.Render(percentage)
-	} else {
-		percentage = ValueStyle.Render(percentage)
-	}
-
-	builder.WriteString(progressView)
-	builder.WriteString(percentage)
+	builder.WriteString(progressWithPercentage)
 
 	return BorderStyle.Width(width).Render(builder.String())
 }
@@ -40,26 +31,15 @@ func renderMemoryView(memUsage float64, memTotal uint64, memUsed uint64, progres
 	builder.WriteString(SectionTitleStyle.Render("MEMORY USAGE"))
 	builder.WriteString("\n\n")
 
-	progressView := progressBar.ViewAs(memUsage / 100)
+	progressView := FormatProgressBar(progressBar, memUsage, width-10)
+	progressWithPercentage := AddPercentage(progressView, memUsage, width)
 
 	usedGB := float64(memUsed) / 1024 / 1024 / 1024
 	totalGB := float64(memTotal) / 1024 / 1024 / 1024
-
-	usageText := fmt.Sprintf(" %.1f%%", memUsage)
-	if memUsage > 85 {
-		usageText = DangerStyle.Render(usageText)
-	} else if memUsage > 60 {
-		usageText = WarningStyle.Render(usageText)
-	} else {
-		usageText = ValueStyle.Render(usageText)
-	}
-
 	detailsText := fmt.Sprintf(" (%.1f/%.1f GB)", usedGB, totalGB)
-	detailsText = ValueStyle.Render(detailsText)
 
-	builder.WriteString(progressView)
-	builder.WriteString(usageText)
-	builder.WriteString(detailsText)
+	builder.WriteString(progressWithPercentage)
+	builder.WriteString(ValueStyle.Render(detailsText))
 
 	return BorderStyle.Width(width).Render(builder.String())
 }
@@ -114,7 +94,7 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 	} else {
 		builder.WriteString(PasswordStyle.Render(passwordText))
 
-		if passwordText != "Press 'r' to generate a password" && len(passwordText) > 0 {
+		if passwordText != "Press 'r' to generate" && len(passwordText) > 0 {
 			strength := passwordGen.AnalyzeStrength(passwordText)
 
 			builder.WriteString("\n\n")

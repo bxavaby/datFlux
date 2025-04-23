@@ -11,6 +11,8 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
+var currentTheme Theme
+
 var (
 	TitleStyle         lipgloss.Style
 	SectionTitleStyle  lipgloss.Style
@@ -28,9 +30,22 @@ var (
 	MemoryProgress progress.Model
 )
 
+var CustomBorder = lipgloss.Border{
+	Top:         "═",
+	Bottom:      "═", // ━ or ╌
+	Left:        "║", // ┃
+	Right:       "║",
+	TopLeft:     "┲", // ┭ or ╆
+	TopRight:    "┱", // ┮ or ╅
+	BottomLeft:  "┺", // ┵ or ╄
+	BottomRight: "┹", // ┶ or ╃
+}
+
 var PasswordAnimationColors []lipgloss.Color
 
 func InitializeStyles(theme Theme) {
+	currentTheme = theme
+
 	PasswordAnimationColors = []lipgloss.Color{
 		theme.Accent,
 		theme.Highlight,
@@ -67,7 +82,7 @@ func InitializeStyles(theme Theme) {
 		Italic(true)
 
 	BorderStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
+		Border(CustomBorder).
 		BorderForeground(theme.Highlight).
 		Padding(1, 0)
 

@@ -26,7 +26,7 @@ type PasswordAnimation struct {
 func NewPasswordAnimation(generator *password.Generator) *PasswordAnimation {
 	return &PasswordAnimation{
 		Target:          "",
-		Current:         "Press 'r' to generate a password",
+		Current:         "Press 'r' to generate",
 		ColorPhase:      0,
 		IsAnimating:     false,
 		Progress:        0,
