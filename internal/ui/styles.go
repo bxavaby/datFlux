@@ -122,7 +122,7 @@ dF== == == == == == == == == == == == == == == == == == == == == == == == == == 
 ||   d88" 888888       == 🌸 == == == == == == == == == == == == == == == == == ==
 ||   888  888888          ||   OPTIONS:                                           ||
 ||   Y88b 888888          ||     --paranoia, -p          Enable paranoia mode     ||
-||    "Y88888888          ||     --help, -h              Show help                ||
+||    "Y88888888          ||     --help, -h, help        Show help                ||
 dF== == == == == == ==| v1.0.0 |== == == == == == == == == == == == == == == == ==dF
 `
 	return LogoStyle.Render(strings.TrimRight(logo, "\n"))

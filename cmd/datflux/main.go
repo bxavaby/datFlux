@@ -52,7 +52,9 @@ func handleSubcommands(args []string) {
 	case "help", "--help", "-h":
 		printHelp()
 	default:
-		fmt.Fprintf(os.Stderr, "Unknown subcommand: %s\n", args[0])
+		ui.InitializeStyles(ui.GetDefaultTheme())
+		errorMessage := fmt.Sprintf("Unknown subcommand: %s\n", args[0])
+		fmt.Fprintln(os.Stderr, ui.WarningStyle.Render(errorMessage))
 		printHelp()
 		os.Exit(1)
 	}
@@ -87,6 +89,8 @@ func generatePasswordNow(args []string) {
 	passGen.SetParanoiaMode(paranoiaMode, 5) // fewer samples for CLI
 
 	pw := passGen.Generate()
+
+	fmt.Println()
 
 	// output to stdout
 	fmt.Println(pw)
