@@ -127,6 +127,9 @@
   <p><strong>High-Entropy Password Generation</strong><br>creates strong passwords using real system noise</p>
   <br>
 
+  <p><strong>Dual-Mode Operation</strong><br>offers both interactive TUI and efficient CLI modes</p>
+  <br>
+
   <p><strong>Cinematic Password Reveal Animation</strong><br>visually decrypts passwords character by character</p>
   <br>
 
@@ -196,13 +199,30 @@ go install github.com/bxavaby/datFlux/cmd/datflux@latest
 
 ## § Usage
 
-  <p>Launch it in your terminal:</p>
+  <p>datFlux can be used in both interactive and command-line modes:</p>
+
+  <h3>Interactive Mode</h3>
+  <p>Launch the full-featured interactive terminal interface:</p>
 
 ```bash
 datflux
 ```
 
-  <h3>Key Commands</h3>
+  <h3>Command-Line Mode</h3>
+  <p>Generate passwords directly from the command line:</p>
+
+```bash
+# Standard Mode instant password generation
+datflux now
+
+# Enables Paranoia Mode in instant generation
+datflux now --paranoia
+```
+
+  <p>The CLI mode is perfect for scripts, password managers, etc.</p>
+  <br>
+
+  <h3>Key Commands (TUI Mode)</h3>
 
   <p>
     <kbd>r</kbd> - generate password<br>

@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/charmbracelet/bubbles/progress"
 	"github.com/charmbracelet/lipgloss"
@@ -18,6 +19,7 @@ var (
 	BorderStyle        lipgloss.Style
 	StrongPwdStyle     lipgloss.Style
 	VeryStrongPwdStyle lipgloss.Style
+	LogoStyle          lipgloss.Style
 
 	CPUProgress    progress.Model
 	MemoryProgress progress.Model
@@ -72,6 +74,10 @@ func InitializeStyles(theme Theme) {
 	VeryStrongPwdStyle = lipgloss.NewStyle().
 		Foreground(theme.VeryStrongColor)
 
+	LogoStyle = lipgloss.NewStyle().
+		Foreground(theme.Accent).
+		Bold(true)
+
 	CPUProgress = progress.New(
 		progress.WithGradient(theme.StrongColorStr, theme.DangerStr),
 		progress.WithWidth(40),
@@ -104,4 +110,20 @@ func AddPercentage(progressBar string, percentage float64, width int) string {
 	}
 
 	return progressBar + style.Render(percentText)
+}
+
+func Logo() string {
+	logo := `
+dF== == == == == == == == == == == == == == == == == == == == == == == == == == ==dF
+||  	  8888888888888   ||   USAGE:                                             ||
+||        888888          ||     datflux          Launch interactive mode (TUI)   ||
+||        888888          ||     datflux now      Generate password immediately   ||
+||    .d888888888888      ||     datflux now -p   Generate ultra-secure password  ||
+||   d88" 888888       == 🌸 == == == == == == == == == == == == == == == == == ==
+||   888  888888          ||   OPTIONS:                                           ||
+||   Y88b 888888          ||     --paranoia, -p          Enable paranoia mode     ||
+||    "Y88888888          ||     --help, -h              Show help                ||
+dF== == == == == == ==| v1.0.0 |== == == == == == == == == == == == == == == == ==dF
+`
+	return LogoStyle.Render(strings.TrimRight(logo, "\n"))
 }

@@ -95,6 +95,10 @@ func (tm *ThemeManager) GetCurrentTheme() Theme {
 	return tm.themes[tm.currentTheme]
 }
 
+func GetDefaultTheme() Theme {
+	return createTokyoNightTheme()
+}
+
 func (tm *ThemeManager) SwitchTheme(themeType ThemeType) bool {
 	if _, exists := tm.themes[themeType]; exists {
 		tm.currentTheme = themeType
