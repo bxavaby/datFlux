@@ -280,7 +280,7 @@ datflux
       <td>16-32 characters</td>
     </tr>
   </table>
-  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropytest/standard_mode.txt">View detailed test results</a></small></p>
+  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropy/standard_mode.txt">View detailed test results</a></small></p>
   <br>
 
   <h3>Paranoia Mode</h3>
@@ -303,7 +303,7 @@ datflux
       <td>70-80 characters</td>
     </tr>
   </table>
-  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropytest/paranoia_mode.txt">View detailed test results</a></small></p>
+  <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropy/paranoia_mode.txt">View detailed test results</a></small></p>
 </div>
 
 <br>
@@ -330,10 +330,10 @@ datflux
   <p><strong>Ultra-High Entropy Generation</strong><br>empirically verified to produce passwords with ~461 bits of entropy<br>(nearly double the quantum resistance threshold)</p>
   <br>
 
-  <p><strong>Multi-candidate Selection</strong><br>generates and evaluates 25 password candidates in parallel,<br>selecting the strongest option based on cryptographic analysis</p>
+  <p><strong>Multi-candidate Selection</strong><br>generates and evaluates 25 password candidates in parallel,<br>applying cryptographic strength metrics for optimal selection</p>
   <br>
 
-  <p><strong>Extended Length Range</strong><br>creates passwords of 48-80 characters (70-80 in practice)<br>with sophisticated character distribution for maximum security</p>
+  <p><strong>Extended Length Range</strong><br>creates passwords of 48-80 characters (70-80 in practice)<br>with sophisticated character distribution across the entire password length</p>
   <br>
 
   <p><strong>Binary Stream Visualization</strong><br>features a unique animation showing entropy bits<br>transforming into your high-security password</p>
