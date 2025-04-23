@@ -2,6 +2,9 @@ package ui
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/progress"
@@ -126,4 +129,15 @@ dF== == == == == == == == == == == == == == == == == == == == == == == == == == 
 dF== == == == == == ==| v1.0.0 |== == == == == == == == == == == == == == == == ==dF
 `
 	return LogoStyle.Render(strings.TrimRight(logo, "\n"))
+}
+
+func Wiper() {
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "cls")
+	} else {
+		cmd = exec.Command("clear")
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }

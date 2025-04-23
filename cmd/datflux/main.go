@@ -50,9 +50,11 @@ func handleSubcommands(args []string) {
 	case "now":
 		generatePasswordNow(args[1:])
 	case "help", "--help", "-h":
+		ui.Wiper()
 		printHelp()
 	default:
 		ui.InitializeStyles(ui.GetDefaultTheme())
+		ui.Wiper()
 		errorMessage := fmt.Sprintf("Unknown subcommand: %s\n", args[0])
 		fmt.Fprintln(os.Stderr, ui.WarningStyle.Render(errorMessage))
 		printHelp()
