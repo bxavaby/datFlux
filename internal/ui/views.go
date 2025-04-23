@@ -11,10 +11,35 @@ import (
 	"datflux/internal/password"
 )
 
+// layout maintenance
+const (
+	MinPasswordPanelWidth = 80
+	MinMetricsPanelWidth  = 80
+	MinScreenWidth        = 84
+	MinScreenHeight       = 40
+)
+
+func styledHeader(text string, width int) string {
+
+	headerText := SectionTitleStyle.Render(text)
+
+	totalHeaderWidth := lipgloss.Width(headerText)
+
+	padding := max(0, (width-4-totalHeaderWidth)/2)
+
+	header := strings.Repeat(" ", padding) + headerText + strings.Repeat(" ", padding)
+
+	if (width-4-totalHeaderWidth)%2 != 0 {
+		header += " "
+	}
+
+	return header
+}
+
 func renderCPUView(cpuUsage float64, progressBar progress.Model, width int) string {
 	var builder strings.Builder
 
-	builder.WriteString(SectionTitleStyle.Render("CPU USAGE"))
+	builder.WriteString(styledHeader("CPU LOAD", width))
 	builder.WriteString("\n\n")
 
 	progressView := FormatProgressBar(progressBar, cpuUsage, width-10)
@@ -28,7 +53,7 @@ func renderCPUView(cpuUsage float64, progressBar progress.Model, width int) stri
 func renderMemoryView(memUsage float64, memTotal uint64, memUsed uint64, progressBar progress.Model, width int) string {
 	var builder strings.Builder
 
-	builder.WriteString(SectionTitleStyle.Render("MEMORY USAGE"))
+	builder.WriteString(styledHeader("MEMORY LOAD", width))
 	builder.WriteString("\n\n")
 
 	progressView := FormatProgressBar(progressBar, memUsage, width-10)
@@ -47,8 +72,8 @@ func renderMemoryView(memUsage float64, memTotal uint64, memUsed uint64, progres
 func renderNetworkView(rxSpeed float64, txSpeed float64, iface string, width int) string {
 	var builder strings.Builder
 
-	title := fmt.Sprintf("NETWORK (%s)", iface)
-	builder.WriteString(SectionTitleStyle.Render(title))
+	title := fmt.Sprintf("NETWORK TRAFFIC (%s)", iface)
+	builder.WriteString(styledHeader(title, width))
 	builder.WriteString("\n\n")
 
 	downloadText := fmt.Sprintf("↓ %s", monitor.FormatSpeed(rxSpeed))
@@ -57,13 +82,14 @@ func renderNetworkView(rxSpeed float64, txSpeed float64, iface string, width int
 	downloadFormatted := ValueStyle.Render(downloadText)
 	uploadFormatted := ValueStyle.Render(uploadText)
 
+	columnWidth := (width - 4) / 2
 	builder.WriteString(lipgloss.NewStyle().
-		Width(width / 2).
+		Width(columnWidth).
 		Align(lipgloss.Center).
 		Render(downloadFormatted))
 
 	builder.WriteString(lipgloss.NewStyle().
-		Width(width / 2).
+		Width(columnWidth).
 		Align(lipgloss.Center).
 		Render(uploadFormatted))
 
@@ -73,15 +99,21 @@ func renderNetworkView(rxSpeed float64, txSpeed float64, iface string, width int
 func renderPasswordView(animation *PasswordAnimation, quality float64, width int, passwordGen *password.Generator, attackModel password.AttackModelType) string {
 	var builder strings.Builder
 
-	qualityIndicator := ""
-	if !animation.IsAnimating {
-		qualityText := fmt.Sprintf(" [Entropy: %.0f%%]", quality*100)
-		qualityIndicator = WarningStyle.Render(qualityText)
-	}
+	// title := "CRYPTOGRAPHICALLY SECURED PASSWORD"
+	// builder.WriteString(styledHeader(title, width))
+	// builder.WriteString("\n")
 
-	title := "GENERATED PASSWORD" + qualityIndicator
-	builder.WriteString(SectionTitleStyle.Render(title))
+	// if !animation.IsAnimating {
+	qualityText := fmt.Sprintf("[Entropy: %.0f%%]", quality*100)
+	qualityStyle := lipgloss.NewStyle().
+		Foreground(WarningStyle.GetForeground()).
+		Align(lipgloss.Center).
+		Width(width - 4)
+	builder.WriteString(qualityStyle.Render(qualityText))
 	builder.WriteString("\n\n")
+	// } else {
+	// builder.WriteString("\n")
+	// }
 
 	passwordText := animation.CurrentPassword()
 	passLen := len(passwordText)
@@ -131,7 +163,13 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 		}
 	}
 
-	return BorderStyle.Width(width).Render(builder.String())
+	if animation.IsAnimating || passwordText == "Press 'r' to generate" || len(passwordText) == 0 {
+		// when animating or showing initial prompt, use bottom padding
+		return PassBorderStyle.Width(width).Render(builder.String())
+	} else {
+		// when showing stats, no bottom padding
+		return BorderStyle.Width(width).Render(builder.String())
+	}
 }
 
 func renderStrengthMeter(score int, width int) string {

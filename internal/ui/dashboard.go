@@ -280,11 +280,20 @@ func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (d *Dashboard) View() string {
-	if !d.ready || d.width < 40 || d.height < 15 {
-		return "Terminal too small. Please resize."
+	if !d.ready {
+		return "Initializing datFlux..."
 	}
 
-	contentWidth := d.width - 4
+	if d.width < MinScreenWidth || d.height < MinScreenHeight {
+
+		warningText := fmt.Sprintf(
+			"\n\nTerminal too small (%dx%d).\n\nPlease resize to at least %dx%d for optimal experience.\n\n",
+			d.width, d.height, MinScreenWidth, MinScreenHeight)
+
+		return WarningStyle.Render(warningText)
+	}
+
+	contentWidth := max(d.width-4, MinPasswordPanelWidth)
 
 	docStyle := lipgloss.NewStyle().Padding(0, 2)
 
@@ -297,11 +306,13 @@ func (d *Dashboard) View() string {
 	}
 	titleView := TitleStyle.Width(contentWidth).Render(titleText)
 
+	panelWidth := contentWidth - 2
+
 	// vertical layout always
 	passwordView := renderPasswordView(
 		d.animation,
 		d.entropyCollector.GetEntropyQuality(),
-		contentWidth-2,
+		panelWidth,
 		d.passwordGen,
 		d.currentAttackModel,
 	)
@@ -309,7 +320,7 @@ func (d *Dashboard) View() string {
 	cpuView := renderCPUView(
 		d.systemMonitor.CPUUsage,
 		d.cpuProgress,
-		contentWidth-2,
+		panelWidth,
 	)
 
 	memoryView := renderMemoryView(
@@ -317,14 +328,14 @@ func (d *Dashboard) View() string {
 		d.systemMonitor.MemoryTotal,
 		d.systemMonitor.MemoryUsed,
 		d.memProgress,
-		contentWidth-2,
+		panelWidth,
 	)
 
 	networkView := renderNetworkView(
 		d.systemMonitor.NetworkRxSpeed,
 		d.systemMonitor.NetworkTxSpeed,
 		d.systemMonitor.ActiveInterface,
-		contentWidth-2,
+		panelWidth,
 	)
 
 	mainView := lipgloss.JoinVertical(

@@ -21,6 +21,7 @@ var (
 	DangerStyle        lipgloss.Style
 	PasswordStyle      lipgloss.Style
 	HelpStyle          lipgloss.Style
+	PassBorderStyle    lipgloss.Style
 	BorderStyle        lipgloss.Style
 	StrongPwdStyle     lipgloss.Style
 	VeryStrongPwdStyle lipgloss.Style
@@ -35,10 +36,10 @@ var CustomBorder = lipgloss.Border{
 	Bottom:      "═", // ━ or ╌
 	Left:        "║", // ┃
 	Right:       "║",
-	TopLeft:     "┲", // ┭ or ╆
-	TopRight:    "┱", // ┮ or ╅
-	BottomLeft:  "┺", // ┵ or ╄
-	BottomRight: "┹", // ┶ or ╃
+	TopLeft:     "┲", // ┭ or ╆ or ⌏
+	TopRight:    "┱", // ┮ or ╅ or ⌎
+	BottomLeft:  "┺", // ┵ or ╄ or ⌍
+	BottomRight: "┹", // ┶ or ╃ or ⌌
 }
 
 var PasswordAnimationColors []lipgloss.Color
@@ -62,6 +63,7 @@ func InitializeStyles(theme Theme) {
 
 	SectionTitleStyle = lipgloss.NewStyle().
 		Foreground(theme.Highlight).
+		Background(theme.Primary).
 		Bold(true)
 
 	ValueStyle = lipgloss.NewStyle().
@@ -84,7 +86,13 @@ func InitializeStyles(theme Theme) {
 	BorderStyle = lipgloss.NewStyle().
 		Border(CustomBorder).
 		BorderForeground(theme.Highlight).
-		Padding(1, 0)
+		// Padding(1, 0) // originally
+		Padding(1, 0, 0, 1)
+
+	PassBorderStyle = lipgloss.NewStyle().
+		Border(CustomBorder).
+		BorderForeground(theme.Highlight).
+		Padding(1, 0, 1, 1)
 
 	StrongPwdStyle = lipgloss.NewStyle().
 		Foreground(theme.StrongColor)
