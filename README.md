@@ -257,7 +257,7 @@ datflux
 ## § Entropy Testing Results
 
   <h3>The Scientific Analysis</h3>
-  <p>All security claims are backed by <a href="https://github.com/bxavaby/datFlux/tree/main/test/entropytest">empirical testing</a> of password entropy generation.</p>
+  <p>All security claims are backed by <a href="https://github.com/bxavaby/datFlux/tree/main/test/entropy">empirical testing</a> of password entropy generation.</p>
   <br>
 
   <h3>Standard Mode</h3>
