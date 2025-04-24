@@ -238,6 +238,34 @@ datflux now --paranoia
 
 <div align="center">
 
+## § Command-Line Interface
+
+<p>For quick operations and script integration, datFlux offers a minimal command-line interface:</p>
+<br>
+
+<h3>⊹ Instant Password Generation ⊹</h3>
+<p><em>Generate passwords instantly in the CLI</em></p>
+<img src="assets/df-now.png" alt="datFlux instant generation" width="500">
+<p><small>Using `datflux now` with paranoia mode enabled via `-p` or `--paranoia` flag</small></p>
+<br><br>
+
+<h3>⊹ Help Documentation ⊹</h3>
+<p><em>Sightly formatted command usage information</em></p>
+<img src="assets/df-help.png" alt="datFlux help" width="500">
+<p><small>Access help anytime with `datflux --help`, `datflux -h` or `datflux help'</small></p>
+<br><br>
+
+<h3>⊹ User-Friendly Errors ⊹</h3>
+<p><em>Clear feedback for incorrect commands</em></p>
+<img src="assets/df-unknown.png" alt="datFlux unknown command" width="500">
+<p><small>Helpful suggestions when commands aren't recognized</small></p>
+
+</div>
+
+<br><br>
+
+<div align="center">
+
 ## § How It Works
 
   <p>datFlux creates background system load through various noise generation methods:</p>
