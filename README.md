@@ -139,7 +139,7 @@
   <p><strong>System Metrics Dashboard</strong><br>live CPU, RAM, and Network usage monitoring</p>
   <br>
 
-  <p><strong>Entropy Quality Indicator</strong><br>monitors randomness quality in real-time</p>
+  <p><strong>Entropy Quality Indicator</strong><br>real-time entropy visualization with hex readout and an 8-level status feedback</p>
   <br>
 
   <p><strong>Clipboard Integration</strong><br>copy passwords to your clipboard with a single keystroke</p>
@@ -253,6 +253,10 @@ datflux now --paranoia
   <br>
 
   <p>These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
+  <br>
+
+  <p>The multi-level entropy quality gauge provides precise feedback on the randomness extraction process, ensuring you can visualize the security strength of your current entropy pool in real-time.</p>
+  <br>
 </div>
 
 <br><br>
