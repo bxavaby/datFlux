@@ -191,7 +191,7 @@ go build -o datflux ./cmd/datflux
 ```
 
 <div align="center">
-  
+
 <br>
 
   <h3>Go Install</h3>
@@ -208,7 +208,7 @@ go install github.com/bxavaby/datFlux/cmd/datflux@latest
 
 ## § Usage
 
-  <p>datFlux can be used in both interactive and command-line modes:</p>
+  <p>datFlux offers both interactive and command-line modes:</p>
 
   <h3>Interactive Mode</h3>
   <p>Launch the full-featured interactive terminal interface:</p>
@@ -236,7 +236,8 @@ datflux now --paranoia
 
 <div align="center">
 
-  <p>The CLI mode is perfect for scripts, password managers, etc.</p>
+  <p>The CLI mode is perfect for quick operations, script integration, password managers, etc.</p>
+  <p><small>See the <a href="#-command-line-interface">Command-Line Interface</a> section below for visual examples.</small></p>
   <br>
 
   <h3>Key Commands (TUI Mode)</h3>
@@ -257,7 +258,7 @@ datflux now --paranoia
 
 ## § Command-Line Interface
 
-<p>For quick operations and script integration, datFlux offers a minimal command-line interface:</p>
+<p>Building on what's mentioned above, here are some examples of datFlux CLI in action:</p>
 <br>
 
 <h3>⊹ Instant Password Generation ⊹</h3>
