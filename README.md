@@ -246,7 +246,7 @@ datflux now --paranoia
 <h3>⊹ Instant Password Generation ⊹</h3>
 <p><em>Generate passwords instantly in the CLI</em></p>
 <img src="assets/df-now.png" alt="datFlux instant generation" width="500">
-<p><small>Using `datflux now` with paranoia mode enabled via `-p` or `--paranoia` flag</small></p>
+<p><small>Using `datflux now` with paranoia mode enabled via available flags</small></p>
 <br><br>
 
 <h3>⊹ Help Documentation ⊹</h3>
