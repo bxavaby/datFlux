@@ -153,6 +153,63 @@
 
 <div align="center">
 
+## § Roadmap
+
+  <p>datFlux is continuously evolving. Here's what's going on:</p>
+  <br>
+
+  <h3>✓ Implemented</h3>
+  <p>• Dual-mode: full-featured TUI and scriptable CLI</p>
+  <p>• Cryptographically secure password generation using:</p>
+  <p>  ↳ Fortuna CSRNG (32 entropy pools)</p>
+  <p>  ↳ BLAKE2s hashing (Standard Mode), BLAKE2b (Paranoia Mode)</p>
+  <p>  ↳ Persistent entropy seed file between sessions</p>
+  <p>• Entropy sourced from system noise with live metrics panels:</p>
+  <p>  ↳ CPU usage</p>
+  <p>  ↳ Memory allocation</p>
+  <p>  ↳ Network traffic simulation</p>
+  <p>• Theme system with multiple hand-picked palettes from lospec</p>
+  <p>• Exclusive theme for Paranoia Mode</p>
+  <p>• Live entropy visualization and password animation</p>
+  <p>• Password strength analysis with:</p>
+  <p>  ↳ Entropy bit calculation</p>
+  <p>  ↳ Time-to-crack estimates across 3 attack models:</p>
+  <p>    ⤷ Online (rate-limited)</p>
+  <p>    ⤷ Offline (GPU-level)</p>
+  <p>    ⤷ Quantum (1e15 guesses/sec)</p>
+  <p>• Compact entropy strength meter with scoring labels</p>
+  <p>• Clipboard integration (via key binding)</p>
+  <p>• CLI Subcommands:</p>
+  <p>  ↳ <code>datflux now</code> — instant generation in Standard Mode</p>
+  <p>  ↳ <code>datflux now -p</code> — instant generation in Paranoia Mode</p>
+  <p>  ↳ <code>datflux help</code> — print help banner</p>
+  <p>• Clean startup handling for small terminal sizes</p>
+  <p>• Written entirely in Go using:</p>
+  <p>  ↳ <a href="https://github.com/charmbracelet/bubbletea" target="_blank">Bubbletea</a> — TUI framework</p>
+  <p>  ↳ <a href="https://github.com/charmbracelet/lipgloss" target="_blank">Lipgloss</a> — Style definitions</p>
+  <p>  ↳ <a href="https://github.com/charmbracelet/gum" target="_blank">Gum</a> — Installation script</p>
+  <br>
+
+  <h3>⟳ In Progress</h3>
+  <p>• Enhanced installation experience with gum</p>
+  <p>• Updated password strength meter, using a more nuanced approach</p>
+  <br>
+
+  <h3>◎ Planned</h3>
+  <p>• Toggleable help panel for all key bindings</p>
+  <p>• Theme Picker as a popup instead of cycling through themes</p>
+  <p>• Site-specific Password Derivation</p>
+  <p>• Charset Filtering for Site Constraints</p>
+  <p>• Entropy Audit Subcommand</p>
+  <p>  ↳ <code>datflux audit &lt;password&gt;</code> — provides entropy and crack-time analysis</p>
+  <p>• QR Code Key Binding</p>
+  <p>• More colorschemes and visual refinements</p>
+</div>
+
+<br><br>
+
+<div align="center">
+
 ## § Installation
 
   <h3>Quick Install Script (Linux/macOS)</h3>

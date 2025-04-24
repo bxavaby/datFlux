@@ -299,7 +299,7 @@ func (d *Dashboard) View() string {
 
 	var titleText string
 	if d.paranoiaMode {
-		titleText = fmt.Sprintf("🛡️ [datFlux] Entropy-Borne Password Generator [Paranoia Mode]")
+		titleText = fmt.Sprintf("🛡️ [datFlux] Entropy-Borne Password Generator [Paranoia Mode]") // ✶ or ★ or ✭ or ⇶ or ☢
 	} else {
 		titleText = fmt.Sprintf("🌸 [datFlux] Entropy-Borne Password Generator [%s]",
 			d.themeManager.GetCurrentTheme().Name)
