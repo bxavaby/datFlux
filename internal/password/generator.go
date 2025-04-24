@@ -140,6 +140,7 @@ func (g *Generator) generateParanoid() string {
 
 // uses the given seed to generate a password
 func (g *Generator) generateWithSeed(seed int64) string {
+	// nosec G404 -- uses a securely seeded PRNG
 	source := rand.NewSource(seed)
 	secureRand := rand.New(source)
 
@@ -153,6 +154,7 @@ func (g *Generator) generateWithSeed(seed int64) string {
 
 	if g.useLower {
 		allChars += lowercase
+		// nosec G404 -- uses a securely seeded PRNG
 		requiredChars = append(requiredChars, lowercase[secureRand.Intn(len(lowercase))])
 	}
 
@@ -208,6 +210,7 @@ func (g *Generator) generateWithSeed(seed int64) string {
 
 func (g *Generator) GenerateRandomChar() byte {
 	var allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-="
+	// nosec G404 -- only used for visual animation
 	return allChars[rand.Intn(len(allChars))]
 }
 

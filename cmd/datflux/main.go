@@ -90,11 +90,12 @@ func generatePasswordNow(args []string) {
 	passGen := password.NewGenerator(collector)
 	passGen.SetParanoiaMode(paranoiaMode, 5) // fewer samples for CLI
 
+	// nosec G404 -- uses cryptographically secure entropy from Fortuna
 	pw := passGen.Generate()
 
 	fmt.Println()
 
-	// output to stdout
+	// nosec G107 -- intentional display as CLI output
 	fmt.Println(pw)
 }
 
