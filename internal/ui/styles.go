@@ -90,7 +90,7 @@ func InitializeStyles(theme Theme) {
 		Border(CustomBorder).
 		BorderForeground(theme.Highlight).
 		// Padding(1, 0) // originally
-		Padding(1, 0, 0, 1)
+		Padding(1, 1, 0, 1)
 
 	PassBorderStyle = lipgloss.NewStyle().
 		Border(CustomBorder).
