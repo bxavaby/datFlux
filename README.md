@@ -158,6 +158,8 @@
   <h3>Quick Install Script (Linux/macOS)</h3>
   <p>The easiest way to install datFlux is using the installation script:</p>
 
+</div>
+
 ```bash
 # Clone the repository
 git clone https://github.com/bxavaby/datFlux.git
@@ -167,10 +169,14 @@ cd datFlux
 ./install.sh
 ```
 
+<div align="center">
+
   <p>The installer will build datFlux and add it to your system path.</p>
   <br>
 
   <h3>From Source (Manual)</h3>
+
+</div>
 
 ```bash
 # Clone the repository
@@ -184,14 +190,17 @@ go build -o datflux ./cmd/datflux
 ./datflux
 ```
 
+<div align="center">
+  
 <br>
 
   <h3>Go Install</h3>
 
+</div>
+
 ```bash
 go install github.com/bxavaby/datFlux/cmd/datflux@latest
 ```
-</div>
 
 <br><br>
 
@@ -204,12 +213,18 @@ go install github.com/bxavaby/datFlux/cmd/datflux@latest
   <h3>Interactive Mode</h3>
   <p>Launch the full-featured interactive terminal interface:</p>
 
+</div>
+
 ```bash
 datflux
 ```
 
+<div align="center">
+
   <h3>Command-Line Mode</h3>
   <p>Generate passwords directly from the command line:</p>
+
+</div>
 
 ```bash
 # Standard Mode instant password generation
@@ -218,6 +233,8 @@ datflux now
 # Enables Paranoia Mode in instant generation
 datflux now --paranoia
 ```
+
+<div align="center">
 
   <p>The CLI mode is perfect for scripts, password managers, etc.</p>
   <br>
