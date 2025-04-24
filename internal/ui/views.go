@@ -36,6 +36,67 @@ func styledHeader(text string, width int) string {
 	return header
 }
 
+func renderHexQuality(quality float64) string {
+	percentage := int(quality * 100)
+
+	// percentage 2 hex
+	hexValue := fmt.Sprintf("%02X", percentage)
+
+	var statusStyle lipgloss.Style
+	var statusText string
+	var statusIndicator string
+
+	switch {
+	case percentage < 13:
+		statusText = "VOID"
+		statusIndicator = "⣀" // empty gauge
+		statusStyle = DangerStyle
+	case percentage < 25:
+		statusText = "POOR"
+		statusIndicator = "⣀" // 25% filled gauge
+		statusStyle = DangerStyle
+	case percentage < 38:
+		statusText = "WEAK"
+		statusIndicator = "⣄" // 37.5% filled gauge
+		statusStyle = DangerStyle
+	case percentage < 50:
+		statusText = "FAIR"
+		statusIndicator = "⣤" // 50% filled gauge
+		statusStyle = WarningStyle
+	case percentage < 63:
+		statusText = "MILD"
+		statusIndicator = "⣦" // 62.5% filled gauge
+		statusStyle = WarningStyle
+	case percentage < 75:
+		statusText = "FIRM"
+		statusIndicator = "⣶" // 75% filled gauge
+		statusStyle = WarningStyle
+	case percentage < 88:
+		statusText = "GOOD"
+		statusIndicator = "⣷" // 87.5% filled gauge
+		statusStyle = StrongPwdStyle
+	default:
+		statusText = "PEAK"
+		statusIndicator = "⣿" // 100% filled gauge
+		statusStyle = VeryStrongPwdStyle
+	}
+
+	// hexadecimal timestamp
+	// timestamp := time.Now().UnixNano() % 0xFFFFFF
+	// timeHex := fmt.Sprintf("%06X", timestamp)
+
+	indicatorStyle := statusStyle
+	indicatorStyle = indicatorStyle.Faint(true)
+
+	return fmt.Sprintf("%s%s%s %s %s %s",
+		BracketStyle.Render("["),
+		HexStyle.Render("0x"+hexValue+"%"),
+		BracketStyle.Render("]"),
+		LabelStyle.Render("ENTROPY"),
+		indicatorStyle.Render(statusIndicator),
+		statusStyle.Render(statusText))
+}
+
 func renderCPUView(cpuUsage float64, progressBar progress.Model, width int) string {
 	var builder strings.Builder
 
@@ -104,9 +165,8 @@ func renderPasswordView(animation *PasswordAnimation, quality float64, width int
 	// builder.WriteString("\n")
 
 	// if !animation.IsAnimating {
-	qualityText := fmt.Sprintf("[Entropy: %.0f%%]", quality*100)
+	qualityText := renderHexQuality(quality)
 	qualityStyle := lipgloss.NewStyle().
-		Foreground(WarningStyle.GetForeground()).
 		Align(lipgloss.Center).
 		Width(width - 4)
 	builder.WriteString(qualityStyle.Render(qualityText))

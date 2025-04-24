@@ -26,6 +26,9 @@ var (
 	StrongPwdStyle     lipgloss.Style
 	VeryStrongPwdStyle lipgloss.Style
 	LogoStyle          lipgloss.Style
+	HexStyle           lipgloss.Style
+	BracketStyle       lipgloss.Style
+	LabelStyle         lipgloss.Style
 
 	CPUProgress    progress.Model
 	MemoryProgress progress.Model
@@ -104,6 +107,16 @@ func InitializeStyles(theme Theme) {
 		Foreground(theme.Accent).
 		Bold(true)
 
+	HexStyle = lipgloss.NewStyle().
+		Foreground(theme.Warning)
+
+	BracketStyle = lipgloss.NewStyle().
+		Foreground(theme.Warning)
+
+	LabelStyle = lipgloss.NewStyle().
+		Foreground(theme.Warning).
+		Bold(true)
+
 	CPUProgress = progress.New(
 		progress.WithGradient(theme.StrongColorStr, theme.DangerStr),
 		progress.WithWidth(40),
@@ -145,7 +158,7 @@ dF== == == == == == == == == == == == == == == == == == == == == == == == == == 
 ||        888888          ||     datflux          Launch interactive mode (TUI)   ||
 ||        888888          ||     datflux now      Generate password immediately   ||
 ||    .d888888888888      ||     datflux now -p   Generate ultra-secure password  ||
-||   d88" 888888       == 🌸 == == == == == == == == == == == == == == == == == ==
+||   d88" 888888          🌸 == == == == == == == == == == == == == == == == == ==
 ||   888  888888          ||   OPTIONS:                                           ||
 ||   Y88b 888888          ||     --paranoia, -p          Enable paranoia mode     ||
 ||    "Y88888888          ||     --help, -h, help        Show help                ||
