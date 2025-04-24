@@ -108,7 +108,7 @@
 
 <p>
   <strong>Linux</strong>: full functionality available<br>
-  <strong>macOS</strong>: system monitoring may be limited<br>
+  <strong>macOS</strong>: monitoring may be limited<br>
   <strong>Windows</strong>: not currently supported
 </p>
 
