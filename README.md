@@ -237,7 +237,7 @@ datflux now --paranoia
 <div align="center">
 
   <p>The CLI mode is perfect for quick operations, script integration, password managers, etc.</p>
-  <p><small>See the <a href="#-command-line-interface">Command-Line Interface</a> section below for visual examples.</small></p>
+  <p><small>See the following section for visual examples.</small></p>
   <br>
 
   <h3>Key Commands (TUI Mode)</h3>
