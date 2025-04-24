@@ -232,11 +232,11 @@
   <p>The easiest way to install datFlux is using the installation script:</p>
 
 ```bash
-# Clone the repository
+# clone the repo
 git clone https://github.com/bxavaby/datFlux.git
 cd datFlux
 
-# Run the installer
+# run installer
 ./install.sh
 ```
 
@@ -246,14 +246,14 @@ cd datFlux
   <h3>From Source (Manual)</h3>
 
 ```bash
-# Clone the repository
+# clone the repo
 git clone https://github.com/bxavaby/datFlux.git
 cd datFlux
 
-# Build the binary
+# build the binary
 go build -o datflux ./cmd/datflux
 
-# Run it
+# run
 ./datflux
 ```
 
@@ -289,7 +289,7 @@ datflux
 # Standard Mode instant password generation
 datflux now
 
-# Enables Paranoia Mode in instant generation
+# enable Paranoia Mode in instant generation
 datflux now --paranoia
 ```
 
