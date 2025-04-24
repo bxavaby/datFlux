@@ -96,8 +96,6 @@
 
 <br>
 
-<div align="center">
-
 ## § System Requirements
 
 ![Linux: Full Support](https://img.shields.io/badge/Linux-Full%20Support-success?logo=linux&logoColor=white)
@@ -112,53 +110,45 @@
   <strong>Windows</strong>: not currently supported
 </p>
 
-</div>
-
-<br><br>
+<br>
 
 > ※ For the best experience, try datFlux on a Linux system.
 
 <br>
 
-<div align="center">
-
 ## § Features
+  
+- **High-Entropy Password Generation**  
+  Creates strong passwords using real system noise.
 
-  <p><strong>High-Entropy Password Generation</strong><br>creates strong passwords using real system noise</p>
-  <br>
+- **Dual-Mode Operation**  
+  Offers both interactive TUI and efficient CLI modes.
 
-  <p><strong>Dual-Mode Operation</strong><br>offers both interactive TUI and efficient CLI modes</p>
-  <br>
+- **Cinematic Password Reveal Animation**  
+  Visually decrypts passwords character by character.
 
-  <p><strong>Cinematic Password Reveal Animation</strong><br>visually decrypts passwords character by character</p>
-  <br>
+- **Multiple Attack Models**  
+  Test against different threat scenarios from online attacks to QC.
 
-  <p><strong>Multiple Attack Models</strong><br>test against different threat scenarios from online attacks to QC</p>
-  <br>
+- **System Metrics Dashboard**  
+  Live CPU, RAM, and Network usage monitoring.
 
-  <p><strong>System Metrics Dashboard</strong><br>live CPU, RAM, and Network usage monitoring</p>
-  <br>
+- **Entropy Quality Indicator**  
+  Real-time entropy visualization with hex readout and an 8-level status feedback.
 
-  <p><strong>Entropy Quality Indicator</strong><br>real-time entropy visualization with hex readout and an 8-level status feedback</p>
-  <br>
-
-  <p><strong>Clipboard Integration</strong><br>copy passwords to your clipboard with a single keystroke</p>
-</div>
-
-<br><br>
+- **Clipboard Integration**  
+  Copy passwords to your clipboard with a single keystroke.
+  
+<br>
 
 > ※ The quantum computing attack model provides time estimates with approximately 5-8% margin of error when compared to theoretical calculations. These estimates are rounded to the nearest time unit for readability.
 
 <br><br>
 
-<div align="center">
-
 ## § Roadmap
 
   <p>datFlux is continuously evolving. Here's what's going on:</p>
   <br>
-
-</div>
 
   <h3>✓ Implemented</h3>
   <ul style="list-style-type: none; padding-left: 0; text-align: left; display: inline-block;">
@@ -233,18 +223,13 @@
   <li> QR Code Key Binding</li>
   <li> More colorschemes and visual refinements</li>
 </ul>
-</div>
 
 <br><br>
-
-<div align="center">
 
 ## § Installation
 
   <h3>Quick Install Script (Linux/macOS)</h3>
   <p>The easiest way to install datFlux is using the installation script:</p>
-
-</div>
 
 ```bash
 # Clone the repository
@@ -255,14 +240,10 @@ cd datFlux
 ./install.sh
 ```
 
-<div align="center">
-
   <p>The installer will build datFlux and add it to your system path.</p>
   <br>
 
   <h3>From Source (Manual)</h3>
-
-</div>
 
 ```bash
 # Clone the repository
@@ -276,13 +257,9 @@ go build -o datflux ./cmd/datflux
 ./datflux
 ```
 
-<div align="center">
-
 <br>
 
   <h3>Go Install</h3>
-
-</div>
 
 ```bash
 go install github.com/bxavaby/datFlux/cmd/datflux@latest
@@ -290,27 +267,23 @@ go install github.com/bxavaby/datFlux/cmd/datflux@latest
 
 <br><br>
 
-<div align="center">
-
 ## § Usage
 
   <p>datFlux offers both interactive and command-line modes:</p>
 
+<br>
+
   <h3>Interactive Mode</h3>
   <p>Launch the full-featured interactive terminal interface:</p>
-
-</div>
 
 ```bash
 datflux
 ```
 
-<div align="center">
+<br>
 
   <h3>Command-Line Mode</h3>
   <p>Generate passwords directly from the command line:</p>
-
-</div>
 
 ```bash
 # Standard Mode instant password generation
@@ -320,10 +293,7 @@ datflux now
 datflux now --paranoia
 ```
 
-<div align="center">
-
-  <p>The CLI mode is perfect for quick operations, script integration, password managers, etc.</p>
-  <p><small>See the following section for visual examples.</small></p>
+  <p>The CLI mode is perfect for quick operations, script integration, password managers, etc. See the following section for visual examples.</p>
   <br>
 
   <h3>Key Commands (TUI Mode)</h3>
@@ -336,11 +306,8 @@ datflux now --paranoia
     <kbd>p</kbd> - toggle paranoia mode<br>
     <kbd>q</kbd> / <kbd>Ctrl+C</kbd> / <kbd>Esc</kbd> - quit datFlux
   </p>
-</div>
 
 <br><br>
-
-<div align="center">
 
 ## § Command-Line Interface
 
@@ -364,11 +331,7 @@ datflux now --paranoia
 <img src="assets/df-unknown.png" alt="datFlux unknown command" width="500">
 <p><small>Helpful suggestions when commands aren't recognized</small></p>
 
-</div>
-
 <br><br>
-
-<div align="center">
 
 ## § How It Works
 
@@ -385,32 +348,31 @@ datflux now --paranoia
   <br>
 
   <p>These operations generate entropy that is collected, hashed, and used to create unpredictable, secure passwords that are more resistant to brute force and dictionary attacks than traditional password generators.</p>
-  <br>
 
   <p>The multi-level entropy quality gauge provides precise feedback on the randomness extraction process, ensuring you can visualize the security strength of your current entropy pool in real-time.</p>
-  <br>
-</div>
 
 <br><br>
-
-<div align="center">
 
 ## § Security Considerations
 
-  <p>• datFlux password generation happens locally with zero network transmission</p>
-  <p>• System load is optimized with safeguards to collect entropy efficiently</p>
-  <p>• Your passwords remain on-device until you explicitly copy them elsewhere</p>
-  <p>• Uses BLAKE2s cryptographic hashing for superior performance and security compared to traditional SHA-256</p>
-  <p>• Implements the Fortuna cryptographically secure random number generator (CSRNG)</p>
-  <p>• Maintains persistent entropy across sessions using a protected seed file</p>
-  <p>• Employs 32 separate entropy pools for resistance against entropy compromise attacks</p>
-</div>
+- **Network Tx**: datFlux password generation happens locally with 0 network transmission
+- **Entropy Guard**: system load is optimized with safeguards to collect entropy efficiently
+- **Local Security**: passwords remain on your device until you explicitly copy them elsewhere
+- **Better Cryptography**: uses BLAKE2s/b for superior performance and security compared to traditional SHA-256/512
+- **Fortuna CSRNG**: implements the Fortuna cryptographically secure random number generator (CSRNG)
+- **Persistence**: maintains persistent entropy across sessions using a protected seed file
+- **Multi-Pool**: employs 32 separate entropy pools for resistance against entropy compromise attacks
 
 <br><br>
 
-<div align="center">
-
 ## § Entropy Testing Results
+
+<div align="left">
+  <img src="https://img.shields.io/badge/Standard%20Mode-136%20bits-7aa2f7" alt="Standard Mode Entropy">
+  <img src="https://img.shields.io/badge/Paranoia%20Mode-461%20bits-bb9af7" alt="Paranoia Mode Entropy">
+</div>
+
+<br>
 
   <h3>The Scientific Analysis</h3>
   <p>All security claims are backed by <a href="https://github.com/bxavaby/datFlux/tree/main/test/entropy">empirical testing</a> of password entropy generation.</p>
@@ -460,18 +422,10 @@ datflux now --paranoia
     </tr>
   </table>
   <p><small><a href="https://github.com/bxavaby/datFlux/blob/main/test/entropy/paranoia_mode.txt">View detailed test results</a></small></p>
-</div>
 
 <br>
 
-<div align="center">
-  <img src="https://img.shields.io/badge/Standard%20Mode-136%20bits-7aa2f7" alt="Standard Mode Entropy">
-  <img src="https://img.shields.io/badge/Paranoia%20Mode-461%20bits-bb9af7" alt="Paranoia Mode Entropy">
-</div>
-
-<br><br>
-
-> #### Security Perspective
+> #### Perspective
 > * **Classical Computing**: 80 bits is considered secure
 > * **Quantum Computing**: 256 bits is considered resistant
 > * **datFlux Standard Mode**: 136 bits (exceeds classical requirements)
@@ -479,31 +433,23 @@ datflux now --paranoia
 
 <br><br>
 
-<div align="center">
-
 ## § Enhanced Security with Paranoia Mode
 
-  <p><strong>Ultra-High Entropy Generation</strong><br>empirically verified to produce passwords with ~461 bits of entropy<br>(nearly double the quantum resistance threshold)</p>
-  <br>
+- **Quantum-Resistant Entropy**: empirically verified to produce passwords with ~461 bits of entropy (nearly double the quantum resistance threshold)
+  
+- **Multi-candidate Selection**: generates and evaluates 25 password candidates in parallel, applying cryptographic strength metrics for optimal selection
 
-  <p><strong>Multi-candidate Selection</strong><br>generates and evaluates 25 password candidates in parallel,<br>applying cryptographic strength metrics for optimal selection</p>
-  <br>
+- **Extended Length Range**: creates passwords of 48-80 characters (70-80 in practice) with sophisticated character distribution across the entire password length
 
-  <p><strong>Extended Length Range</strong><br>creates passwords of 48-80 characters (70-80 in practice)<br>with sophisticated character distribution across the entire password length</p>
-  <br>
+- **Binary Stream Visualization**: features a unique animation showing entropy bits transforming into your high-security password
 
-  <p><strong>Binary Stream Visualization</strong><br>features a unique animation showing entropy bits<br>transforming into your high-security password</p>
-  <br>
+- **Toggle with a Single Key**: seamlessly switch between standard and paranoia modes by pressing <kbd>p</kbd> any time
 
-  <p><strong>Toggle with a Single Key</strong><br>seamlessly switch between standard and paranoia modes<br>by pressing <kbd>p</kbd> any time</p>
-
-</div>
-
-<br><br>
+<br>
 
 > ※ Paranoia Mode uses a design parameter of 48-80 characters, but the empirical test shows that when selecting the highest-entropy candidate from 25 options, the chosen passwords typically fall in the 70-80 character range. Therefore, PM is designed for situations requiring exceptional security, such as master passwords, cryptocurrency wallets, or sensitive data encryption. While Standard Mode already provides strong security (~136 bits), PM's 461-bit entropy exceeds even theoretical quantum computing attack thresholds by a substantial margin.
 
-<br><br>
+<br>
 
 #
 
