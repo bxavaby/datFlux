@@ -429,7 +429,7 @@ datflux now --paranoia
 > * **Classical Computing**: 80 bits is considered secure
 > * **Quantum Computing**: 256 bits is considered resistant
 > * **datFlux Standard Mode**: 136 bits (exceeds classical requirements)
-> * **datFlux Paranoia Mode**: 461 bits (exceeds quantum requirements by ~200 bits)
+> * **datFlux Paranoia Mode**: 461 bits (exceeds quantum requirements by +200 bits)
 
 <br><br>
 
