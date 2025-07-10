@@ -7,3 +7,7 @@
 !cmd/
 !internal/
 !assets/
+
+package-lock.json
+node_modules
+clipboard.min.js

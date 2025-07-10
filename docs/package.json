@@ -1,0 +1,16 @@
+{
+  "name": "datflux-site",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.0.3"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1"
+  }
+}

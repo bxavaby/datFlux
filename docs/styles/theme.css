@@ -1,0 +1,114 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap");
+
+/* Tokyo Night */
+:root {
+    --bg-primary: #14151f;
+    --bg-secondary: #1a1b26;
+    --bg-tertiary: #24283b;
+    --bg-element: #2c2e40;
+
+    --text-primary: #a9b1d6;
+    --text-secondary: #c0caf5;
+    --text-bright: #ffffff;
+    --text-muted: #565f89;
+
+    --accent-blue: #7aa2f7;
+    --accent-purple: #bb9af7;
+    --accent-orange: #ff9e64;
+    --accent-green: #9ece6a;
+    --accent-red: #f7768e;
+    --accent-cyan: #2ac3de;
+
+    --status-low: #f7768e;
+    --status-medium: #ff9e64;
+    --status-high: #9ece6a;
+
+    --border-primary: #414868;
+    --border-highlight: rgba(122, 162, 247, 0.3);
+    --border-dim: rgba(65, 72, 104, 0.5);
+
+    /* Shadows */
+    --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-moderate: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-sharp: 0 -2px 0 var(--accent-purple);
+
+    /* Typography */
+    --font-mono: "JetBrains Mono", monospace;
+    --font-sans: "Space Grotesk", sans-serif;
+    --font-code: "Fira Code", monospace;
+    --font-paranoia: "Syne Mono", monospace;
+
+    /* Spacing - 8px grid system */
+    --space-1: 0.5rem; /* 8px */
+    --space-2: 1rem; /* 16px */
+    --space-3: 1.5rem; /* 24px */
+    --space-4: 2rem; /* 32px */
+    --space-5: 2.5rem; /* 40px */
+    --space-6: 3rem; /* 48px */
+    --space-7: 4rem; /* 64px */
+    --space-8: 5rem; /* 80px */
+    --space-9: 6rem; /* 96px */
+    --space-10: 7rem; /* 112px */
+
+    /* Font sizes */
+    --text-xs: 0.75rem; /* 12px */
+    --text-sm: 0.875rem; /* 14px */
+    --text-base: 1rem; /* 16px */
+    --text-lg: 1.125rem; /* 18px */
+    --text-xl: 1.25rem; /* 20px */
+    --text-2xl: 1.5rem; /* 24px */
+    --text-3xl: 2rem; /* 32px */
+    --text-4xl: 3rem; /* 48px */
+
+    --content-width: 1200px;
+    --header-height: 60px;
+
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    --z-background: -10;
+    --z-base: 0;
+    --z-above: 10;
+    --z-overlay: 100;
+    --z-modal: 1000;
+
+    /* Roadmap colors */
+    --roadmap-implemented: var(--accent-green);
+    --roadmap-progress: var(--accent-orange);
+    --roadmap-planned: var(--accent-blue);
+    --roadmap-bg-implemented: rgba(158, 206, 106, 0.1);
+    --roadmap-bg-progress: rgba(255, 158, 100, 0.1);
+    --roadmap-bg-planned: rgba(122, 162, 247, 0.1);
+}
+
+/* Midnight Ablaze (Paranoia Mode) */
+.paranoia-theme {
+    --bg-primary: #130208;
+    --bg-secondary: #1f0510;
+    --bg-tertiary: #31051e;
+    --bg-element: #460e2b;
+
+    --text-primary: #f0f0f0;
+    --text-secondary: #ffffff;
+    --text-bright: #ffffff;
+    --text-muted: #d0d0d0;
+
+    --accent-blue: #ff8274;
+    --accent-purple: #d53c6a;
+    --accent-orange: #ff8274;
+    --accent-green: #ff8274;
+    --accent-red: #d53c6a;
+    --accent-cyan: #7c183c;
+
+    --border-primary: #7c183c;
+    --border-highlight: rgba(213, 60, 106, 0.5);
+    --border-dim: rgba(124, 24, 60, 0.5);
+
+    --font-mono: "Syne Mono", monospace;
+    --font-sans: "Syne Mono", monospace;
+}
